@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: FastAPI",
+            "type": "debugpy",
+            "cwd": "${workspaceFolder}/server",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "server.__main__:app",
+                "--reload"
+            ],
+            "jinja": true
+        }
+    ]
+}
