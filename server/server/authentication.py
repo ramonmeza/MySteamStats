@@ -3,6 +3,21 @@ from urllib.parse import urlencode
 from urllib.request import urlopen
 import re
 
+from .strings import *
+from .toasts import set_toast
+
+
+def user_auth_before(request: fh.Request, session):
+    # authentication method, which allows access based on whether the auth parameter is set in the session
+    auth = request.scope["auth"] = session.get("auth", None)
+
+    if not auth:
+        set_toast(session, "error", UNAUTHENTICATED_ERROR)
+        return fh.RedirectResponse(
+            "/signin",
+            status_code=303,
+        )
+
 
 class SteamAuth:
     PROVIDER: str = "https://steamcommunity.com/openid/login"

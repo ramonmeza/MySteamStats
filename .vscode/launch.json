@@ -4,6 +4,7 @@
         {
             "name": "Python Debugger: FastAPI",
             "type": "debugpy",
+            "envFile": "${workspaceFolder}/.env",
             "cwd": "${workspaceFolder}/server",
             "request": "launch",
             "module": "uvicorn",
@@ -11,7 +12,8 @@
                 "server.__main__:app",
                 "--reload"
             ],
-            "jinja": true
+            "jinja": true,
+            "justMyCode": false
         }
     ]
 }

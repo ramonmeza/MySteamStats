@@ -1,4 +1,5 @@
 import fasthtml.common as fh
+import os
 import typing
 
 from fasthtml import FastHTML
@@ -6,41 +7,43 @@ from fasthtml import FastHTML
 from .pages.dashboard import Dashboard
 from .pages.landing import Landing
 from .pages.signin import SignIn
-from .steam_auth import SteamAuth
-
-
-def user_auth_before(request: fh.Request, session):
-    # authentication method, which allows access based on whether the auth parameter is set in the session
-    auth = request.scope["auth"] = session.get("auth", None)
-
-    if not auth:
-        return fh.RedirectResponse("/signin", status_code=303)
-
+from .strings import *
+from .urls import *
+from .toasts import set_toast, handle_toasts
+from .authentication import user_auth_before, SteamAuth
+from .errors import exception_handlers
 
 # routes under skip parameter will be public.
 # all other routes require authentication to access.
-beforeware = fh.Beforeware(
-    user_auth_before,
-    skip=[
-        r"/favicon\.ico",
-        r"/static/.*",
-        r".*\.css",
-        r".*\.js",
-        "/",
-        r"/signin",
-        r"/signin/.*",
-        r"/auth/.*",
-    ],
-)
+beforeware = [
+    fh.Beforeware(
+        user_auth_before,
+        skip=[
+            r"/favicon\.ico",
+            r"/static/.*",
+            r".*\.css",
+            r".*\.js",
+            "/",
+            r"/signin",
+            r"/signin/.*",
+            r"/auth/.*",
+        ],
+    ),
+    fh.Beforeware(handle_toasts),
+]
 
+
+# define app and routes
 app: FastHTML = FastHTML(
-    debug=True,
+    debug=True if os.getenv("ENABLE_DEBUG", "false").lower() == "true" else False,
     before=beforeware,
-    hdrs=(fh.Script(src="https://cdn.tailwindcss.com"),),
+    exception_handlers=exception_handlers,
+    hdrs=(fh.Script(src=TAILWINDCSS_CDN),),
     routes=[fh.Mount("/static", app=fh.StaticFiles(directory="static"), name="static")],
     cls="bg-gray-200",
 )
 rt: typing.Callable = app.route
+fh.setup_toasts(app)
 
 
 @rt("/")
@@ -54,7 +57,7 @@ async def get(session):
 
 
 @rt("/signin")
-async def get():
+async def get(session):
     # signin page shows all methods to login
     # in this case, only through steam (for now)
     return SignIn()
@@ -63,13 +66,14 @@ async def get():
 @rt("/signin/steam")
 async def get():
     # hand-off authentication to steam
-    return SteamAuth.authorize(callback_url="http://localhost:8000/auth/steam")
+    return SteamAuth.authorize(callback_url=f"{os.getenv("HOST_URL")}/auth/steam")
 
 
 @rt("/signout")
 async def get(session):
     # reset the session auth key to None, effectively closing the active session
     session["auth"] = None
+    set_toast(session, "success", SUCCESSFUL_SIGNOUT)
     return fh.RedirectResponse("/", status_code=303)
 
 
@@ -79,8 +83,12 @@ async def get(request: fh.Request, session):
     # here we need to validate the response and get the user's steam ID, which we save into the session
     session["auth"] = SteamAuth.validate_authorization(request)
 
-    # redirect users to the homepage, which should redirect them to the dashboard
-    return fh.RedirectResponse("/", status_code=303)
+    if session.get("auth", None) is None:
+        set_toast(session, "error", UNSUCCESSFUL_SIGNIN)
+        return fh.RedirectResponse("/", status_code=303)
+    else:
+        set_toast(session, "success", SUCCESSFUL_SIGNIN)
+        return fh.RedirectResponse("/dashboard", status_code=303)
 
 
 @rt("/dashboard")

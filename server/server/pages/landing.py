@@ -1,13 +1,15 @@
 import fasthtml.common as fh
 
+from ..strings import *
+
 
 def Landing():
     return fh.Div(
-        fh.H1("Hello, World!"),
-        fh.P("Hi"),
+        fh.H1(WELCOME),
+        fh.P(TAGLINE),
         (
             fh.A(
-                "Sign In",
+                SIGNIN,
                 href="/signin",
             )
         ),
