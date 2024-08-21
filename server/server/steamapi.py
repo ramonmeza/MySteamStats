@@ -289,7 +289,7 @@ class SteamAPI:
         def GetOwnedGames(
             key: str,
             steamid: int,
-            appids_filter: int,
+            appids_filter: list[int] = [],
             include_free_sub: bool = False,
             include_extended_appinfo: bool = False,
             include_app_info: bool = False,
@@ -302,7 +302,7 @@ class SteamAPI:
             Args:
                 key (str): Access key
                 steamid (int): The player we're asking about
-                appids_filter (int): if set, restricts result set to the passed in apps
+                appids_filter (list[int], optional): if set, restricts result set to the passed in apps
                 include_free_sub (bool): Some games are in the free sub, which are excluded by default.
                 include_extended_appinfo (bool): true if we want even mor…info must also be true.. Defaults to False.
                 include_app_info (bool): true if we want additional details (name, icon) about each game. Defaults to False.
@@ -313,13 +313,14 @@ class SteamAPI:
             Returns:
                 _type_: _description_
             """
+            appid_filter_params = {f"appids_filter[{i}]": v for i, v in enumerate(appids_filter)}
             return SteamAPI.call(
                 api="IPlayerService",
                 endpoint="GetOwnedGames",
                 api_version=1,
                 key=key,
                 steamid=steamid,
-                appids_filter=appids_filter,
+                **appid_filter_params,
                 include_free_sub=include_free_sub,
                 include_extended_appinfo=include_extended_appinfo,
                 include_app_info=include_app_info,
@@ -386,3 +387,12 @@ class SteamAPI:
                 steamid=steamid,
                 badgeid=badgeid,
             )
+
+
+if __name__=="__main__":
+    data = SteamAPI.IPlayerService.GetOwnedGames(
+        key="E4894D86371BF8182D28367914B3E13C",
+        steamid=76561198063006208,
+        appids_filter=[730, 440]
+    )
+    print(data)
