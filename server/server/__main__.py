@@ -101,3 +101,7 @@ async def get(session):
     # dashboard shows a list of games
     steam_id = session.get("auth")
     return Dashboard(steam_api_key=os.getenv("STEAM_SECRET"), steam_id=steam_id)
+
+@rt("/stats/{app_id:path}")
+async def get(app_id: int, session):
+    return fh.Div(app_id)

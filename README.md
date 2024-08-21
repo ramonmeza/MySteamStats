@@ -7,11 +7,11 @@ Visualize your stats from your favorite games on Steam!
 Coming soon...
 
 ### Supported Games
-| Game Name        | Steam ID |
-| ---------------- | -------- |
-| Counter-Strike 2 | 730      |
+| Game Name | Steam ID |
+| - | - |
+| Counter-Strike 2 | 730 |
 
-Request a game (coming soon)
+Request a game (create an issue)
 
 ## Development
 ### Roadmap
@@ -20,7 +20,7 @@ Request a game (coming soon)
     - [ ] Highlight key reasons to use this app
     - [ ] Showcase features and functionality through videos/animation.
     - [ ] Show supported games list
-    - [ ] Allow users to sign in
+    - [x] Allow users to sign in
     - [ ] Allow users to request a game
     - [ ] Allow users to give feedback
 
@@ -31,13 +31,16 @@ Request a game (coming soon)
 
 - [ ] Dashboard
     - [ ] Make pretty
-    - [ ] Display supported games that user has in a list, where games are clickable
+    - [x] Display supported games that user has in a list, where games are clickable
 
 - [ ] Game Stats Page (per game)
     - [ ] Make pretty
+    - [ ] Show game info
     - [ ] Show stats for selected game (from Steam WebAPI)
 
 ### Environment Variables
-| Name       | Description           |
-| ---------- | --------------------- |
+| Name | Description |
+| - | - |
 | `HOST_URL` | URL of the web server |
+| `ENABLE_DEBUG` | Whether to enable debug mode (Starlette error are shown on `500 Internal Server Error` instead of using custom exception handler) |
+| `STEAM_SECRET` | Steam API key, available [here](https://steamcommunity.com/dev/apikey) |
