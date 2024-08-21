@@ -14,6 +14,23 @@ from typing import Literal
 
 
 class SteamAPI:
+
+    @staticmethod
+    def get_app_name(appid: int) -> str:
+        app_list = SteamAPI.ISteamApps.GetAppList()
+        return next(
+            (x["name"] for x in app_list["applist"]["apps"] if x["appid"] == appid),
+            "undefined",
+        )
+
+    @staticmethod
+    def get_appid(app_name: str) -> int:
+        app_list = SteamAPI.ISteamApps.GetAppList()
+        return next(
+            (x["appid"] for x in app_list["applist"]["apps"] if x["name"] == app_name),
+            "",
+        )
+
     @staticmethod
     def call(
         api: str,
@@ -39,6 +56,15 @@ class SteamAPI:
             return resp.text
         elif format == "vdf":
             return resp.content
+
+    class ISteamApps:
+        @staticmethod
+        def GetAppList(api_version: Literal[1, 2] = 2):
+            return SteamAPI.call(
+                api="ISteamApps",
+                endpoint="GetAppList",
+                api_version=api_version,
+            )
 
     class ISteamNews:
         @staticmethod
@@ -313,7 +339,9 @@ class SteamAPI:
             Returns:
                 _type_: _description_
             """
-            appid_filter_params = {f"appids_filter[{i}]": v for i, v in enumerate(appids_filter)}
+            appid_filter_params = {
+                f"appids_filter[{i}]": v for i, v in enumerate(appids_filter)
+            }
             return SteamAPI.call(
                 api="IPlayerService",
                 endpoint="GetOwnedGames",
@@ -387,12 +415,3 @@ class SteamAPI:
                 steamid=steamid,
                 badgeid=badgeid,
             )
-
-
-if __name__=="__main__":
-    data = SteamAPI.IPlayerService.GetOwnedGames(
-        key="E4894D86371BF8182D28367914B3E13C",
-        steamid=76561198063006208,
-        appids_filter=[730, 440]
-    )
-    print(data)

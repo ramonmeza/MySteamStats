@@ -1,17 +1,22 @@
 import fasthtml.common as fh
 import os
+import requests_cache
 import typing
 
 from fasthtml import FastHTML
 
+from .authentication import user_auth_before, SteamAuth
+from .errors import exception_handlers
 from .pages.dashboard import Dashboard
 from .pages.landing import Landing
 from .pages.signin import SignIn
 from .strings import *
-from .urls import *
 from .toasts import set_toast, handle_toasts
-from .authentication import user_auth_before, SteamAuth
-from .errors import exception_handlers
+from .urls import *
+
+
+# create cache for all requests
+requests_cache.install_cache('requests_cache')
 
 # routes under skip parameter will be public.
 # all other routes require authentication to access.
@@ -94,4 +99,5 @@ async def get(request: fh.Request, session):
 @rt("/dashboard")
 async def get(session):
     # dashboard shows a list of games
-    return Dashboard()
+    steam_id = session.get("auth")
+    return Dashboard(steam_api_key=os.getenv("STEAM_SECRET"), steam_id=steam_id)
