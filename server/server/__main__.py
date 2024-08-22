@@ -71,7 +71,7 @@ async def get(session):
 @rt("/signin/steam")
 async def get():
     # hand-off authentication to steam
-    return SteamAuth.authorize(callback_url=f"{os.getenv("HOST_URL")}/auth/steam")
+    return SteamAuth.authorize(callback_url=f"{os.getenv('HOST_URL')}/auth/steam")
 
 
 @rt("/signout")
