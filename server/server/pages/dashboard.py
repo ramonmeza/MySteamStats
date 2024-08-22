@@ -1,10 +1,8 @@
 import fasthtml.common as fh
 
+from .layout import Layout
 from ..steamapi import SteamAPI
-from ..strings import *
-
-
-SUPPORTED_GAMES = {730: "Counter-Strike 2"}
+from ..supported_games import SUPPORTED_GAMES
 
 
 def Dashboard(steam_api_key: str, steam_id: int):
@@ -23,13 +21,16 @@ def Dashboard(steam_api_key: str, steam_id: int):
             fh.Tr(
                 fh.Td(SUPPORTED_GAMES[game["appid"]]),
                 fh.Td(game["appid"]),
-                fh.Td(f"{game["playtime_2weeks"] / 60:.2f}hrs"),
-                fh.Td(f"{game["playtime_forever"] / 60:.2f}hrs"),
-                onclick=f"document.location = '/stats/{game["appid"]}'",
+                fh.Td(f'{game["playtime_2weeks"] / 60:.2f}hrs'),
+                fh.Td(f'{game["playtime_forever"] / 60:.2f}hrs'),
+                onclick="document.location = '/stats/" + str(game["appid"]) + "'",
                 cls="hover:bg-blue-300 hover:cursor-pointer",
             )
             for game in data["response"]["games"]
         ],
     )
 
-    return fh.Div(fh.A(SIGNOUT, href="/signout"), fh.H1(DASHBOARD), game_table)
+    return Layout(
+        "Dashboard",
+        fh.Div(fh.A("Sign Out", href="/signout"), fh.H1("Dashboard"), game_table),
+    )

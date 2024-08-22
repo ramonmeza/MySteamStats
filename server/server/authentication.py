@@ -3,7 +3,6 @@ from urllib.parse import urlencode
 from urllib.request import urlopen
 import re
 
-from .strings import *
 from .toasts import set_toast
 
 
@@ -12,7 +11,7 @@ def user_auth_before(request: fh.Request, session):
     auth = request.scope["auth"] = session.get("auth", None)
 
     if not auth:
-        set_toast(session, "error", UNAUTHENTICATED_ERROR)
+        set_toast(session, "error", "You must sign in!")
         return fh.RedirectResponse(
             "/signin",
             status_code=303,

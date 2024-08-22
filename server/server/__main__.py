@@ -10,7 +10,6 @@ from .errors import exception_handlers
 from .pages.dashboard import Dashboard
 from .pages.landing import Landing
 from .pages.signin import SignIn
-from .strings import *
 from .toasts import set_toast, handle_toasts
 from .urls import *
 
@@ -45,7 +44,7 @@ app: FastHTML = FastHTML(
     exception_handlers=exception_handlers,
     hdrs=(fh.Script(src=TAILWINDCSS_CDN),),
     routes=[fh.Mount("/static", app=fh.StaticFiles(directory="static"), name="static")],
-    cls="bg-gray-200",
+    cls="bg-gray-950",
 )
 rt: typing.Callable = app.route
 fh.setup_toasts(app)
@@ -78,7 +77,7 @@ async def get():
 async def get(session):
     # reset the session auth key to None, effectively closing the active session
     session["auth"] = None
-    set_toast(session, "success", SUCCESSFUL_SIGNOUT)
+    set_toast(session, "success", "You've successfully signed out")
     return fh.RedirectResponse("/", status_code=303)
 
 
@@ -89,10 +88,10 @@ async def get(request: fh.Request, session):
     session["auth"] = SteamAuth.validate_authorization(request)
 
     if session.get("auth", None) is None:
-        set_toast(session, "error", UNSUCCESSFUL_SIGNIN)
+        set_toast(session, "error", "You've failed to sign in!")
         return fh.RedirectResponse("/", status_code=303)
     else:
-        set_toast(session, "success", SUCCESSFUL_SIGNIN)
+        set_toast(session, "success", "You've successfully signed in")
         return fh.RedirectResponse("/dashboard", status_code=303)
 
 

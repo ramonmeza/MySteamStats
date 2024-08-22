@@ -19,7 +19,7 @@ Request a game (create an issue)
     - [ ] Make pretty
     - [ ] Highlight key reasons to use this app
     - [ ] Showcase features and functionality through videos/animation.
-    - [ ] Show supported games list
+    - [x] Show supported games list
     - [x] Allow users to sign in
     - [ ] Allow users to request a game
     - [ ] Allow users to give feedback

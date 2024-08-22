@@ -17,11 +17,7 @@ class SteamAPI:
 
     @staticmethod
     def get_app_name(appid: int) -> str:
-        app_list = SteamAPI.ISteamApps.GetAppList()
-        return next(
-            (x["name"] for x in app_list["applist"]["apps"] if x["appid"] == appid),
-            "undefined",
-        )
+        return SteamAPI.get_app_details(appid)[str(appid)]["data"]["name"]
 
     @staticmethod
     def get_appid(app_name: str) -> int:
@@ -30,6 +26,13 @@ class SteamAPI:
             (x["appid"] for x in app_list["applist"]["apps"] if x["name"] == app_name),
             "",
         )
+
+    @staticmethod
+    def get_app_details(app_id: int) -> dict:
+        resp = requests.get(
+            f"https://store.steampowered.com/api/appdetails?appids={app_id}"
+        )
+        return resp.json()
 
     @staticmethod
     def call(
