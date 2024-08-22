@@ -4,9 +4,7 @@ from ..steamapi import SteamAPI
 from ..strings import *
 
 
-SUPPORTED_GAMES = {
-    730: "Counter-Strike 2"
-}
+SUPPORTED_GAMES = {730: "Counter-Strike 2"}
 
 
 def Dashboard(steam_api_key: str, steam_id: int):
@@ -28,7 +26,7 @@ def Dashboard(steam_api_key: str, steam_id: int):
                 fh.Td(f"{game["playtime_2weeks"] / 60:.2f}hrs"),
                 fh.Td(f"{game["playtime_forever"] / 60:.2f}hrs"),
                 onclick=f"document.location = '/stats/{game["appid"]}'",
-                cls="hover:bg-blue-300 hover:cursor-pointer"
+                cls="hover:bg-blue-300 hover:cursor-pointer",
             )
             for game in data["response"]["games"]
         ],

@@ -16,7 +16,7 @@ from .urls import *
 
 
 # create cache for all requests
-requests_cache.install_cache('requests_cache')
+requests_cache.install_cache("requests_cache")
 
 # routes under skip parameter will be public.
 # all other routes require authentication to access.
@@ -101,6 +101,7 @@ async def get(session):
     # dashboard shows a list of games
     steam_id = session.get("auth")
     return Dashboard(steam_api_key=os.getenv("STEAM_SECRET"), steam_id=steam_id)
+
 
 @rt("/stats/{app_id:path}")
 async def get(app_id: int, session):
