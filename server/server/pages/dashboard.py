@@ -1,6 +1,5 @@
-import fasthtml.common as fh
+from fasthtml.common import *
 
-from .layout import Layout
 from ..steamapi import SteamAPI
 from ..supported_games import SUPPORTED_GAMES
 
@@ -10,19 +9,19 @@ def Dashboard(steam_api_key: str, steam_id: int):
         key=steam_api_key, steamid=steam_id, appids_filter=SUPPORTED_GAMES.keys()
     )
 
-    game_table = fh.Table(
-        fh.Tr(
-            fh.Th("Game Name"),
-            fh.Th("App ID"),
-            fh.Th("Playtime (last 2 weeks)"),
-            fh.Th("Total Playtime"),
+    game_table = Table(
+        Tr(
+            Th("Game Name"),
+            Th("App ID"),
+            Th("Playtime (last 2 weeks)"),
+            Th("Total Playtime"),
         ),
         *[
-            fh.Tr(
-                fh.Td(SUPPORTED_GAMES[game["appid"]]),
-                fh.Td(game["appid"]),
-                fh.Td(f'{game["playtime_2weeks"] / 60:.2f}hrs'),
-                fh.Td(f'{game["playtime_forever"] / 60:.2f}hrs'),
+            Tr(
+                Td(SUPPORTED_GAMES[game["appid"]]),
+                Td(game["appid"]),
+                Td(f'{game["playtime_2weeks"] / 60:.2f}hrs'),
+                Td(f'{game["playtime_forever"] / 60:.2f}hrs'),
                 onclick="document.location = '/stats/" + str(game["appid"]) + "'",
                 cls="hover:bg-blue-300 hover:cursor-pointer",
             )
@@ -30,7 +29,15 @@ def Dashboard(steam_api_key: str, steam_id: int):
         ],
     )
 
-    return Layout(
-        "Dashboard",
-        fh.Div(fh.A("Sign Out", href="/signout"), fh.H1("Dashboard"), game_table),
+    return (
+        Title("GameStats Dashboard"),
+        Body(
+            Div(
+                A("Sign Out", href="/signout"),
+                H1("Dashboard"),
+                game_table,
+                cls="container mx-auto",
+            ),
+            cls="min-w-screen min-h-screen",
+        ),
     )

@@ -9,6 +9,7 @@ def GameCard(app_id: int, game_name: str):
         Img(
             src=game_details["header_image"],
             alt=game_name,
-            cls="rounded-lg shadow-md hover:shadow-xl transition-shadow",
+            cls="rounded-lg shadow-md hover:shadow-xl transition-shadow mx-auto",
         ),
+        cls="w-full md:w-1/3",
     )

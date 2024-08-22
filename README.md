@@ -15,7 +15,7 @@ Request a game (create an issue)
 
 ## Development
 ### Roadmap
-- [ ] Landing Page
+- [ ] Home Page
     - [ ] Make pretty
     - [ ] Highlight key reasons to use this app
     - [ ] Showcase features and functionality through videos/animation.
@@ -37,6 +37,7 @@ Request a game (create an issue)
     - [ ] Make pretty
     - [ ] Show game info
     - [ ] Show stats for selected game (from Steam WebAPI)
+    - [ ] Search/filter stats using user input
 
 ### Environment Variables
 | Name | Description |
