@@ -45,21 +45,38 @@ beforeware = [
             "/signin",
             r"/signin/.*",
             r"/auth/.*",
+            "/throw"
         ],
     ),
     Beforeware(handle_toasts),
 ]
 
+# load tailwind config and set headers
+ENABLE_DEBUG: bool = (
+    True if os.getenv("ENABLE_DEBUG", "false").lower() == "true" else False
+)
+if ENABLE_DEBUG:
+    with open("tailwind.config.js") as fp:
+        tailwind_config_code = fp.read().replace("\n", "")
+hdrs = (
+    (
+        Script(src="https://cdn.tailwindcss.com/3.4.5"),
+        Script(code=tailwind_config_code),
+    )
+    if ENABLE_DEBUG
+    else (
+        Script(src="/static/js/tailwindcss.js"),
+        Link(rel="stylesheet", href="/static/css/styles.css"),
+    )
+)
 
 # define app and routes
 app: FastHTML = FastHTML(
-    debug=True if os.getenv("ENABLE_DEBUG", "false").lower() == "true" else False,
+    debug=ENABLE_DEBUG,
     before=beforeware,
     exception_handlers=exception_handlers,
-    hdrs=(
-        Script(src="/static/js/tailwindcss.js"),
-        Link(rel="stylesheet", href="/static/css/styles.css"),
-    ),
+    hdrs=hdrs,
+    cls=f"cursor-default min-w-screen min-h-screen text-textcolor1 bg-gradient-to-b from-color1 via-color2 via-30% via-color3 via-60% to-color4",
     routes=[Mount("/static", app=StaticFiles(directory="static"), name="static")],
 )
 rt: typing.Callable = app.route
@@ -128,3 +145,8 @@ async def get():
 @rt("/request")
 async def get():
     return EmailForm("GameStats Game Request")
+
+
+@rt("/throw")
+async def get():
+    raise Exception("Butthole butter")

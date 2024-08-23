@@ -1,8 +1,8 @@
-module.exports = {
+const config = {
     content: [
-        './server/*.py',
-        './server/components/*.py',
-        './server/pages/*.py',
+        "./server/*.py",
+        "./server/components/*.py",
+        "./server/pages/*.py",
     ],
     theme: {
         extend: {
@@ -23,4 +23,10 @@ module.exports = {
         }
     },
     plugins: [],
+};
+
+try {
+    tailwind.config = config;
+} catch {
+    module.exports = config;
 }

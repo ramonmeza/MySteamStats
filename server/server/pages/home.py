@@ -1,4 +1,4 @@
-from fasthtml.common import A, Body, Button, Div, H1, H2, P, Script, Title
+from fasthtml.common import A, Body, Button, Div, H1, H2, Img, P, Script, Title
 
 from ..components.divider import Divider
 from ..components.down_arrow import DownArrow
@@ -88,9 +88,9 @@ def Home():
                             cls="italic",
                         ),
                     ),
-                    cls="container mx-auto",
+                    cls="container mx-auto text-center py-12 space-y-12",
                 ),
-                cls="min-w-screen min-h-screen",
+                cls="min-w-screen",
             ),
             Divider(),
             Div(
@@ -106,6 +106,18 @@ def Home():
             ),
             Div(
                 P(
+                    "GameStats is proudly powered by",
+                    cls="italic text-textcolor3 mb-2",
+                ),
+                Div(
+                    Img(src="/static/img/fasthtml.svg"),
+                    Img(src="/static/img/python.png"),
+                    cls="flex items-center space-x-8 justify-center",
+                ),
+                cls="container mx-auto text-center",
+            ),
+            Div(
+                P(
                     "We'd love to hear your",
                     A(
                         "feedback!",
@@ -115,11 +127,10 @@ def Home():
                 ),
                 P(
                     "Copyright © 2024 GameStats. All rights reserved.",
-                    cls="text-color2 text-sm",
+                    cls="text-textcolor3 text-sm",
                 ),
-                cls="py-12 container mx-auto text-center",
+                cls="pt-8 pb-12 container mx-auto text-center",
             ),
             Script(code=inline_js),
-            cls=f"text-textcolor1 bg-gradient-to-b from-color1 via-color2 via-30% via-color3 via-60% to-color4",
         ),
     )

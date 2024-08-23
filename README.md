@@ -15,8 +15,8 @@ Request a game (create an issue)
 
 ## Development
 ### Roadmap
-- [ ] Home Page
-    - [ ] Make pretty
+- [x] Home Page
+    - [x] Make pretty
     - [x] Highlight key reasons to use this app
     - [x] Showcase features and functionality through videos/animation.
     - [x] Show supported games list
@@ -29,8 +29,8 @@ Request a game (create an issue)
     - [x] Allow users to sign in using their Steam account.
     - [x] Display toast errors when login fails.
 
-- [ ] Dashboard
-    - [ ] Make pretty
+- [x] Dashboard
+    - [x] Make pretty
     - [x] Display supported games that user has in a list, where games are clickable
 
 - [ ] Game Stats Page (per game)
@@ -48,7 +48,7 @@ Request a game (create an issue)
     - [ ] Send email to me
 
 - [ ] Error Pages
-    - [ ] Make pretty
+    - [x] Make pretty
     - [ ] Email Support
 
 ### CI

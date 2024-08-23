@@ -7,5 +7,7 @@ def GameStats(app_id: int):
     game_name: str = SUPPORTED_GAMES[app_id]
     return (
         Title(f"GameStats: {game_name}"),
-        Body(Div(H1(game_name), P("Show stats")), cls="min-w-screen min-h-screen"),
+        Body(
+            Div(H1(game_name), P("Show stats")),
+        ),
     )
