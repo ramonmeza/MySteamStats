@@ -51,6 +51,26 @@ Request a game (create an issue)
     - [ ] Make pretty
     - [ ] Email Support
 
+### CI
+```sh
+# `os` can be one of the following
+# linux-arm64 
+# linux-armv7 
+# linux-x64 
+# macos-arm64 
+# macos-x64 
+# windows-arm64.exe
+# windows-x64.exe
+curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-{os}
+chmod +x tailwindcss-{os}
+mv tailwindcss-{os} tailwindcss
+```
+
+### Compile TailwindCSS
+```sh
+.\tailwindcss.exe -c tailwind.config.js -i tailwind.css -o static/css/styles.css
+```
+
 ### Environment Variables
 | Name | Description |
 | - | - |

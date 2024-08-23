@@ -5,6 +5,7 @@ import typing
 from fasthtml.common import (
     Beforeware,
     FastHTML,
+    Link,
     Mount,
     RedirectResponse,
     Request,
@@ -55,7 +56,10 @@ app: FastHTML = FastHTML(
     debug=True if os.getenv("ENABLE_DEBUG", "false").lower() == "true" else False,
     before=beforeware,
     exception_handlers=exception_handlers,
-    hdrs=(Script(src=TAILWINDCSS_CDN), Script(src="/static/js/tailwindcss.config.js")),
+    hdrs=(
+        Script(src="/static/js/tailwindcss.js"),
+        Link(rel="stylesheet", href="/static/css/styles.css"),
+    ),
     routes=[Mount("/static", app=StaticFiles(directory="static"), name="static")],
 )
 rt: typing.Callable = app.route

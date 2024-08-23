@@ -117,7 +117,7 @@ def Home():
                     "Copyright © 2024 GameStats. All rights reserved.",
                     cls="text-color2 text-sm",
                 ),
-                cls="py-12 container text-center",
+                cls="py-12 container mx-auto text-center",
             ),
             Script(code=inline_js),
             cls=f"text-textcolor1 bg-gradient-to-b from-color1 via-color2 via-30% via-color3 via-60% to-color4",

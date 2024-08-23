@@ -36,7 +36,7 @@ def SignIn():
                     "Copyright © 2024 GameStats. All rights reserved.",
                     cls="text-color2 text-sm",
                 ),
-                cls="absolute bottom-6 container text-center",
+                cls="absolute bottom-6 left-0 right-0 text-center",
             ),
             cls=f"text-textcolor1 bg-gradient-to-b from-color1 via-color2 via-30% via-color3 via-60% to-color4",
         ),
