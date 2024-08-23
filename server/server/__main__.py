@@ -43,7 +43,7 @@ app: FastHTML = FastHTML(
     debug=True if os.getenv("ENABLE_DEBUG", "false").lower() == "true" else False,
     before=beforeware,
     exception_handlers=exception_handlers,
-    hdrs=(Script(src=TAILWINDCSS_CDN),),
+    hdrs=(Script(src=TAILWINDCSS_CDN), Script(src="/static/js/tailwindcss.config.js")),
     routes=[Mount("/static", app=StaticFiles(directory="static"), name="static")],
 )
 rt: typing.Callable = app.route
