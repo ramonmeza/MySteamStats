@@ -1,8 +1,8 @@
 from fasthtml.common import Div
-from fasthtml.svg import Svg, Path
+from fasthtml.svg import Path, Svg
 
 
-def DownArrow(onclick=None, **kwargs):
+def DownArrow(onclick: str | None = None, **kwargs):
     return Div(
         Svg(
             Path(

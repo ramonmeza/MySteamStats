@@ -1,4 +1,4 @@
-import fasthtml.common as fh
+from fasthtml.common import RedirectResponse, Request
 from urllib.parse import urlencode
 from urllib.request import urlopen
 import re
@@ -6,13 +6,13 @@ import re
 from .toasts import set_toast
 
 
-def user_auth_before(request: fh.Request, session):
+def user_auth_before(request: Request, session):
     # authentication method, which allows access based on whether the auth parameter is set in the session
     auth = request.scope["auth"] = session.get("auth", None)
 
     if not auth:
         set_toast(session, "error", "You must sign in!")
-        return fh.RedirectResponse(
+        return RedirectResponse(
             "/signin",
             status_code=303,
         )
@@ -31,7 +31,7 @@ class SteamAuth:
             "openid.identity": "http://specs.openid.net/auth/2.0/identifier_select",
             "openid.claimed_id": "http://specs.openid.net/auth/2.0/identifier_select",
         }
-        resp = fh.RedirectResponse(
+        resp = RedirectResponse(
             url=f"{SteamAuth.PROVIDER}?{urlencode(auth_parameters)}",
             status_code=303,
             headers={"Content-Type": "application/x-www-form-urlencoded"},
@@ -39,7 +39,7 @@ class SteamAuth:
         return resp
 
     @staticmethod
-    def validate_authorization(request: fh.Request) -> str | None:
+    def validate_authorization(request: Request) -> str | None:
         data = request.query_params
 
         validation_args = {

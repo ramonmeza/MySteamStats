@@ -2,11 +2,23 @@ import os
 import requests_cache
 import typing
 
-from fasthtml.common import *
+from fasthtml.common import (
+    Beforeware,
+    FastHTML,
+    Mount,
+    RedirectResponse,
+    Request,
+    Script,
+    setup_toasts,
+    StaticFiles,
+)
+
 
 from .authentication import user_auth_before, SteamAuth
 from .errors import exception_handlers
 from .pages.dashboard import Dashboard
+from .pages.email_form import EmailForm
+from .pages.game_stats import GameStats
 from .pages.home import Home
 from .pages.signin import SignIn
 from .toasts import set_toast, handle_toasts
@@ -101,14 +113,14 @@ async def get(session):
 
 @rt("/stats/{app_id:path}")
 async def get(app_id: int, session):
-    return Div(app_id)
+    return GameStats(app_id)
 
 
 @rt("/feedback")
 async def get():
-    return Div("Feedback form")
+    return EmailForm("GameStats Feedback")
 
 
 @rt("/request")
 async def get():
-    return Div("Game request form")
+    return EmailForm("GameStats Game Request")

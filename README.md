@@ -21,8 +21,8 @@ Request a game (create an issue)
     - [x] Showcase features and functionality through videos/animation.
     - [x] Show supported games list
     - [x] Allow users to sign in
-    - [ ] Allow users to request a game
-    - [ ] Allow users to give feedback
+    - [x] Allow users to request a game
+    - [x] Allow users to give feedback
 
 - [x] Sign-in Page
     - [x] Make pretty
@@ -38,6 +38,18 @@ Request a game (create an issue)
     - [ ] Show game info
     - [ ] Show stats for selected game (from Steam WebAPI)
     - [ ] Search/filter stats using user input
+
+- [ ] Feedback Form
+    - [ ] Make pretty
+    - [ ] Send email to me
+
+- [ ] Game Request Form
+    - [ ] Make pretty
+    - [ ] Send email to me
+
+- [ ] Error Pages
+    - [ ] Make pretty
+    - [ ] Email Support
 
 ### Environment Variables
 | Name | Description |

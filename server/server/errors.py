@@ -1,13 +1,20 @@
-import fasthtml.common as fh
+from fasthtml.common import Body, Div, H1, P, Title
+
+
+def ErrorPage(request, exception):
+    return (
+        Title(f"GameStats: {exception}"),
+        Body(
+            Div(
+                H1(exception.detail),
+                P(f"Error code: {exception.status_code}"),
+                P(repr(exception)),
+            )
+        ),
+    )
 
 
 exception_handlers = {
-    500: lambda req, exc: fh.Titled(
-        "500",
-        fh.Div(fh.H1("Uh oh..."), fh.P("We screwed up")),
-    ),
-    404: lambda req, exc: fh.Titled(
-        "404 Not Found",
-        fh.Div(fh.H1("Uh oh..."), fh.P("We can't find what you're looking for.")),
-    ),
+    500: lambda req, exc: (ErrorPage(req, exc)),
+    404: lambda req, exc: ErrorPage(req, exc),
 }

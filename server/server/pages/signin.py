@@ -1,4 +1,4 @@
-from fasthtml.common import *
+from fasthtml.common import A, Body, Div, H1, Img, P, Title
 
 
 def SignIn():

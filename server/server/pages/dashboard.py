@@ -1,4 +1,4 @@
-from fasthtml.common import *
+from fasthtml.common import A, Body, Div, H1, Table, Td, Th, Title, Tr
 
 from ..steamapi import SteamAPI
 from ..supported_games import SUPPORTED_GAMES
@@ -9,7 +9,7 @@ def Dashboard(steam_api_key: str, steam_id: int):
         key=steam_api_key, steamid=steam_id, appids_filter=SUPPORTED_GAMES.keys()
     )
 
-    game_table = Table(
+    game_table: Table = Table(
         Tr(
             Th("Game Name"),
             Th("Total Playtime"),

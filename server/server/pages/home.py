@@ -1,10 +1,10 @@
-from fasthtml.common import *
-import fasthtml.svg as svg
+from fasthtml.common import A, Body, Button, Div, H1, H2, P, Script, Title
 
 from ..components.divider import Divider
 from ..components.down_arrow import DownArrow
 from ..components.game_card import GameCard
 from ..supported_games import SUPPORTED_GAMES
+
 
 inline_js: str = """
     function updateArrowDirection() {
