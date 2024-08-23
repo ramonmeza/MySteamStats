@@ -61,20 +61,40 @@ def Home():
             ),
             Divider(),
             Div(
-                Div(H1("features"), cls="container mx-auto"),
+                Div(
+                    Div(
+                        H2("Stats Dashboard", cls="text-3xl"),
+                        P(
+                            "Quickly access your library of games via Steam",
+                            cls="italic",
+                        ),
+                    ),
+                    Div(
+                        H2("Game Stats", cls="text-3xl"),
+                        P(
+                            "Access hundreds of easily searchable statstical data points",
+                            cls="italic",
+                        ),
+                    ),
+                    Div(
+                        H2("Constantly Expanding Library", cls="text-3xl"),
+                        P(
+                            "We are constantly adding new games and are willing to take your game ",
+                            A(
+                                "requests!",
+                                href="/request",
+                                cls="text-textcolor2 hover:text-textcolor3 duration-300",
+                            ),
+                            cls="italic",
+                        ),
+                    ),
+                    cls="container mx-auto",
+                ),
                 cls="min-w-screen min-h-screen",
             ),
             Divider(),
             Div(
-                H2("Supported Games", cls="text-3xl"),
-                P(
-                    "We are constantly adding new games and are willing to take your game ",
-                    A(
-                        "requests!",
-                        href="/request",
-                        cls="text-textcolor2 hover:text-textcolor3 duration-300",
-                    ),
-                ),
+                H2("Supported Games", cls="pt-8 text-3xl"),
                 Div(
                     *[
                         GameCard(app_id, game_name)
@@ -82,7 +102,7 @@ def Home():
                     ],
                     cls="grid grid-cols-1 px-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center",
                 ),
-                cls="pt-12 pb-8 container mx-auto text-center space-y-4",
+                cls="pb-8 container mx-auto text-center space-y-4",
             ),
             Div(
                 P(
@@ -99,43 +119,7 @@ def Home():
                 ),
                 cls="py-12 container text-center",
             ),
-            #  Div(
-            #      P(
-            #          "We'd love to hear your",
-            #          A(
-            #              "feedback!",
-            #              href="/feedback",
-            #              cls="text-blue-600 hover:text-blue-300 hover:underline duration-200",
-            #          ),
-            #      ),
-            #      P("Copyright © 2024 GameStats. All rights reserved."),
-            #      cls="min-w-screen min-h-full text-center my-10",
-            #  ),
             Script(code=inline_js),
             cls=f"text-textcolor1 bg-gradient-to-b from-color1 via-color2 via-30% via-color3 via-60% to-color4",
         ),
     )
-
-    #         Div(
-    #             Div(
-    #                 Div(
-    #                     H2("Stats Dashboard", cls="text-2xl font-bold"),
-    #                     P(
-    #                         "Quickly access your library of games via Steam",
-    #                         cls="italic",
-    #                     ),
-    #                     cls="text-left w-56",
-    #                 ),
-    #             ),
-    #             Div(
-    #                 Div(
-    #                     H2("Game Stats", cls="text-2xl font-bold"),
-    #                     P(
-    #                         "Access hundreds of easily searchable statstical data points",
-    #                         cls="italic",
-    #                     ),
-    #                     cls="text-right w-56 float-right",
-    #                 ),
-    #             ),
-    #             cls="min-w-screen px-12 py-24 space-y-32 flex flex-col justify-center",
-    #         ),

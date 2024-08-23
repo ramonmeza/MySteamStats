@@ -17,8 +17,8 @@ Request a game (create an issue)
 ### Roadmap
 - [ ] Home Page
     - [ ] Make pretty
-    - [ ] Highlight key reasons to use this app
-    - [ ] Showcase features and functionality through videos/animation.
+    - [x] Highlight key reasons to use this app
+    - [x] Showcase features and functionality through videos/animation.
     - [x] Show supported games list
     - [x] Allow users to sign in
     - [ ] Allow users to request a game

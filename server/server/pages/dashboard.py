@@ -12,15 +12,11 @@ def Dashboard(steam_api_key: str, steam_id: int):
     game_table = Table(
         Tr(
             Th("Game Name"),
-            Th("App ID"),
-            Th("Playtime (last 2 weeks)"),
             Th("Total Playtime"),
         ),
         *[
             Tr(
                 Td(SUPPORTED_GAMES[game["appid"]]),
-                Td(game["appid"]),
-                Td(f'{game["playtime_2weeks"] / 60:.2f}hrs'),
                 Td(f'{game["playtime_forever"] / 60:.2f}hrs'),
                 onclick="document.location = '/stats/" + str(game["appid"]) + "'",
                 cls="hover:bg-blue-300 hover:cursor-pointer",
