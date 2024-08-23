@@ -24,8 +24,8 @@ Request a game (create an issue)
     - [ ] Allow users to request a game
     - [ ] Allow users to give feedback
 
-- [ ] Sign-in Page
-    - [ ] Make pretty
+- [x] Sign-in Page
+    - [x] Make pretty
     - [x] Allow users to sign in using their Steam account.
     - [x] Display toast errors when login fails.
 
