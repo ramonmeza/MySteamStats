@@ -36,7 +36,7 @@ beforeware = [
         user_auth_before,
         skip=[
             r"/favicon\.ico",
-            r"/static/.*",
+            r"/public/.*",
             r".*\.css",
             r".*\.js",
             "/",
@@ -60,13 +60,13 @@ if ENABLE_DEBUG:
         tailwind_config_code = fp.read().replace("\n", "")
 hdrs = (
     (
-        Script(src="https://cdn.tailwindcss.com/3.4.5"),
+        Script(src="https://cdn.tailwindcss.com"),
         Script(code=tailwind_config_code),
     )
     if ENABLE_DEBUG
     else (
-        Script(src="/static/js/tailwindcss.js"),
-        Link(rel="stylesheet", href="/static/css/styles.css"),
+        Script(src="/public/js/tailwindcss.js"),
+        Link(rel="stylesheet", href="/public/css/styles.css"),
     )
 )
 
@@ -77,7 +77,7 @@ app: FastHTML = FastHTML(
     exception_handlers=exception_handlers,
     hdrs=hdrs,
     cls=f"cursor-default min-w-screen min-h-screen text-textcolor1 bg-gradient-to-b from-color1 via-color2 via-30% via-color3 via-60% to-color4",
-    routes=[Mount("/static", app=StaticFiles(directory="static"), name="static")],
+    routes=[Mount("/public", app=StaticFiles(directory="public"), name="public")],
 )
 rt: typing.Callable = app.route
 setup_toasts(app)

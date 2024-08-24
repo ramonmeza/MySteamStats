@@ -13,7 +13,7 @@ def SignIn():
                     ),
                     A(
                         Img(
-                            src="/static/img/steam_signin_chonky.png",
+                            src="/public/img/steam_signin_chonky.png",
                             alt="Sign in through STEAM",
                             cls="shadow hover:shadow-lg transition-shadow mx-auto w-max",
                         ),

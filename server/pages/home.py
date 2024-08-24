@@ -111,13 +111,13 @@ def Home():
                 ),
                 Div(
                     A(
-                        Img(src="/static/img/fasthtml.svg", cls="h-full"),
+                        Img(src="/public/img/fasthtml.svg", cls="h-full"),
                         href="https://www.fastht.ml/",
                         target="_blank",
                         cls="shadow hover:shadow-lg transition-shadow",
                     ),
                     A(
-                        Img(src="/static/img/python.svg", cls="h-full"),
+                        Img(src="/public/img/python.svg", cls="h-full"),
                         href="https://www.python.org/",
                         target="_blank",
                         cls="shadow hover:shadow-lg transition-shadow my-auto h-full",

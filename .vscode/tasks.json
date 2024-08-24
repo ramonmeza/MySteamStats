@@ -6,7 +6,7 @@
         {
             "label": "Build TailwindCSS",
             "type": "shell",
-            "command": ".\\tailwindcss.exe -c tailwind.config.js -i tailwind.css -o static\\css\\styles.css",
+            "command": ".\\tailwindcss.exe -c tailwind.config.js -i tailwind.css -o public\\css\\styles.css",
             "problemMatcher": [],
             "group": {
                 "kind": "build",

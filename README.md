@@ -68,7 +68,7 @@ mv tailwindcss-{os} tailwindcss
 
 ### Compile TailwindCSS
 ```sh
-.\tailwindcss.exe -c tailwind.config.js -i tailwind.css -o static/css/styles.css
+.\tailwindcss.exe -c tailwind.config.js -i tailwind.css -o public/css/styles.css
 ```
 
 ### Environment Variables
