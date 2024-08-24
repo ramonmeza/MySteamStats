@@ -60,6 +60,7 @@ def Dashboard(steam_api_key: str, steam_id: int):
                     ),
                     cls="py-12 flex flex-col text-center grow",
                 ),
+                cls="px-4 flex flex-col min-h-screen",
             ),
         ),
     )

@@ -9,7 +9,7 @@ def SignIn():
                 Div(
                     H1("Sign In to GameStats", cls="text-3xl"),
                     P(
-                        "This site utilizes the Steam Web API. You must log in using your Steam account to access all of GameStats' features. Simply press the button below to get started!"
+                        "This site utilizes the Steam Web API. You must sign in using your Steam account to access all of GameStats' features. Press the button below to get started!"
                     ),
                     A(
                         Img(
