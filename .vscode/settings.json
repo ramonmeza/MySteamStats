@@ -1,5 +1,5 @@
 {
-	"black-formatter.cwd": "${workspaceFolder}/server",
+	"black-formatter.cwd": "${workspaceFolder}",
 	"editor.defaultFormatter": "ms-python.black-formatter",
 	"editor.formatOnSave": true,
 	"files.exclude": {

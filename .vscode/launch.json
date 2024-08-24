@@ -5,7 +5,7 @@
             "name": "Python Debugger: FastAPI",
             "type": "debugpy",
             "envFile": "${workspaceFolder}/.env",
-            "cwd": "${workspaceFolder}/server",
+            "cwd": "${workspaceFolder}",
             "request": "launch",
             "module": "uvicorn",
             "args": [

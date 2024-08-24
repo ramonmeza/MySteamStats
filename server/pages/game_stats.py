@@ -19,15 +19,18 @@ def GameStats(steam_api_key: str, steam_id: int, app_id: int):
             Div(
                 Div(
                     H1(game_name, cls="text-3xl"),
-                    Button(
-                        "Dashboard",
-                        onclick="document.location = '/dashboard'",
-                        cls="w-max ml-auto px-4 py-2 rounded text-button-font bg-button hover:bg-button-hover duration-300",
-                    ),
-                    Button(
-                        "Sign Out",
-                        onclick="document.location = '/signout'",
-                        cls="w-max ml-auto px-4 py-2 rounded text-button-font bg-button hover:bg-button-hover duration-300",
+                    Div(
+                        Button(
+                            "Dashboard",
+                            onclick="document.location = '/dashboard'",
+                            cls="w-max px-4 py-2 rounded text-button-font bg-button hover:bg-button-hover duration-300",
+                        ),
+                        Button(
+                            "Sign Out",
+                            onclick="document.location = '/signout'",
+                            cls="w-max px-4 py-2 rounded text-button-font bg-button hover:bg-button-hover duration-300",
+                        ),
+                        cls="ml-auto",
                     ),
                     cls="flex flex-cols py-8",
                 ),
