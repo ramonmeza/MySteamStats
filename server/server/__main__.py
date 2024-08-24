@@ -45,7 +45,7 @@ beforeware = [
             "/signin",
             r"/signin/.*",
             r"/auth/.*",
-            "/throw"
+            "/throw",
         ],
     ),
     Beforeware(handle_toasts),
@@ -134,7 +134,8 @@ async def get(session):
 
 @rt("/stats/{app_id:path}")
 async def get(app_id: int, session):
-    return GameStats(app_id)
+    steam_id = session.get("auth")
+    return GameStats(os.getenv("STEAM_SECRET"), steam_id, app_id)
 
 
 @rt("/feedback")
