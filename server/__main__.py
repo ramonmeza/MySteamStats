@@ -60,12 +60,14 @@ if ENABLE_DEBUG:
         tailwind_config_code = fp.read().replace("\n", "")
 hdrs = (
     (
+        Link(rel="icon", type="image/x-icon", href="/public/img/favicon.ico"),
         Script(src="https://cdn.tailwindcss.com"),
         Script(code=tailwind_config_code),
     )
     if ENABLE_DEBUG
     else (
-        Script(src="/public/js/tailwindcss.js"),
+        Link(rel="icon", type="image/x-icon", href="/public/img/favicon.ico"),
+        Script(src="/public/js/tailwindcss.min.js"),
         Link(rel="stylesheet", href="/public/css/styles.css"),
     )
 )

@@ -16,6 +16,9 @@ def GameStats(steam_api_key: str, steam_id: int, app_id: int):
     return (
         Title(f"GameStats: {game_name}"),
         Body(
+            Link(rel="stylesheet", href="/public/css/highlight.min.css"),
+            Script(src="/public/js/highlight.min.js"),
+            Script(src="/public/js/highlight-json.min.js"),
             Div(
                 Div(
                     H1(game_name, cls="text-3xl"),
@@ -35,11 +38,8 @@ def GameStats(steam_api_key: str, steam_id: int, app_id: int):
                     cls="flex flex-cols py-8",
                 ),
                 Div(
-                    P(json.dumps(details, indent=4)),
-                    P(" --- "),
-                    P(" --- "),
-                    P(" --- "),
-                    P(json.dumps(stats, indent=4)),
+                    Pre(Code(json.dumps(details, indent=4), cls="language-json")),
+                    Pre(Code(json.dumps(stats, indent=4), cls="language-json")),
                 ),
                 Div(
                     Div(
@@ -61,6 +61,7 @@ def GameStats(steam_api_key: str, steam_id: int, app_id: int):
                 ),
                 cls="px-4 flex flex-col min-h-screen",
             ),
+            Script(code="hljs.highlightAll();"),
             cls="container mx-auto",
         ),
     )
