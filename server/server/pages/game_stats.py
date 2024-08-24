@@ -12,36 +12,31 @@ def GameStats(steam_api_key: str, steam_id: int, app_id: int):
         steam_api_key, steam_id, app_id
     )
     game_name: str = details["name"]
-    return (
-        Title(f"GameStats: {game_name}"),
-        Body(
-            Div(
-                H1(game_name),
-                P(json.dumps(details, indent=4)),
-                P(" --- "),
-                P(" --- "),
-                P(" --- "),
-                P(json.dumps(stats, indent=4)),
-            ),
-        ),
-    )
 
     return (
         Title(f"GameStats: {game_name}"),
         Body(
             Div(
                 Div(
-                    H1("Dashboard", cls="text-3xl"),
+                    H1(game_name, cls="text-3xl"),
+                    Button(
+                        "Dashboard",
+                        onclick="document.location = '/dashboard'",
+                        cls="w-max ml-auto px-4 py-2 rounded text-button-font bg-button hover:bg-button-hover duration-300",
+                    ),
                     Button(
                         "Sign Out",
                         onclick="document.location = '/signout'",
                         cls="w-max ml-auto px-4 py-2 rounded text-button-font bg-button hover:bg-button-hover duration-300",
                     ),
-                    cls="grid grid-cols-2 py-8",
+                    cls="flex flex-cols py-8",
                 ),
                 Div(
-                    *[DashboardCard(game) for game in data["games"]],
-                    cls="grid grid-rows-1 gap-4",
+                    P(json.dumps(details, indent=4)),
+                    P(" --- "),
+                    P(" --- "),
+                    P(" --- "),
+                    P(json.dumps(stats, indent=4)),
                 ),
                 Div(
                     Div(
@@ -63,5 +58,6 @@ def GameStats(steam_api_key: str, steam_id: int, app_id: int):
                 ),
                 cls="px-4 flex flex-col min-h-screen",
             ),
+            cls="container mx-auto",
         ),
     )
