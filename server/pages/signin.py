@@ -1,7 +1,7 @@
 from fasthtml.common import A, Body, Div, H1, Img, P, Title
 
 from ..strings import *
-
+from ..pages.site_footer import SiteFooter
 
 def SignIn():
     return (
@@ -25,20 +25,7 @@ def SignIn():
                 ),
                 cls="min-w-screen min-h-screen flex flex-col justify-center",
             ),
-            Div(
-                P(
-                    "We'd love to hear your",
-                    A(
-                        "feedback!",
-                        href="/feedback",
-                        cls="text-textcolor2 hover:text-textcolor3 duration-300",
-                    ),
-                ),
-                P(
-                    COPYRIGHT_NOTICE,
-                    cls="text-textcolor3 text-sm",
-                ),
-                cls="absolute bottom-6 left-0 right-0 text-center",
+            SiteFooter(
+                cls="absolute bottom-6 left-0 right-0 text-center"),
             ),
-        ),
-    )
+        )

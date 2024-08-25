@@ -2,6 +2,8 @@ import json
 
 from fasthtml.common import *
 
+from ..components.app_button import AppButton
+from ..pages.site_footer import SiteFooter
 from ..steamapi import SteamAPI
 from ..strings import *
 from ..supported_games import SUPPORTED_GAMES
@@ -25,15 +27,13 @@ def GameStats(steam_api_key: str, steam_id: int, app_id: int):
                 Div(
                     H1(game_name, cls="text-3xl"),
                     Div(
-                        Button(
+                        AppButton(
                             "Dashboard",
-                            onclick="document.location = '/dashboard'",
-                            cls="w-max px-4 py-2 rounded text-button-font bg-button hover:bg-button-hover duration-300",
+                            href="/dashboard",
                         ),
-                        Button(
+                        AppButton(
                             "Sign Out",
-                            onclick="document.location = '/signout'",
-                            cls="w-max px-4 py-2 rounded text-button-font bg-button hover:bg-button-hover duration-300",
+                            href="/signout",
                         ),
                         cls="ml-auto",
                     ),
@@ -51,24 +51,7 @@ def GameStats(steam_api_key: str, steam_id: int, app_id: int):
                     Pre(Code(json.dumps(stats, indent=4), cls="language-json")),
                     cls="container mx-auto",
                 ),
-                Div(
-                    Div(
-                        P(
-                            "We'd love to hear your",
-                            A(
-                                "feedback!",
-                                href="/feedback",
-                                cls="text-textcolor2 hover:text-textcolor3 duration-300",
-                            ),
-                        ),
-                        P(
-                            COPYRIGHT_NOTICE,
-                            cls="text-textcolor3 text-sm",
-                        ),
-                        cls="mt-auto",
-                    ),
-                    cls="py-12 flex flex-col text-center grow",
-                ),
+                SiteFooter(),
                 cls="px-4 flex flex-col min-h-screen",
             ),
             Script(code="hljs.highlightAll();"),

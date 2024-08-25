@@ -6,14 +6,15 @@
             "type": "debugpy",
             "envFile": "${workspaceFolder}/.env",
             "cwd": "${workspaceFolder}",
-            "request": "launch",
+            "request":"launch",
             "module": "uvicorn",
             "args": [
                 "server.__main__:app",
-                "--reload"
+                "--reload",
+                "--reload-include", "tailwind.config.js"
             ],
             "jinja": true,
-            "justMyCode": false
+            "justMyCode": false,
         }
     ]
 }

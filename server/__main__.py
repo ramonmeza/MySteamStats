@@ -88,7 +88,7 @@ app: FastHTML = FastHTML(
     before=beforeware,
     exception_handlers=exception_handlers,
     hdrs=hdrs,
-    cls=f"cursor-default min-w-screen min-h-screen text-textcolor1 bg-gradient-to-b from-color1 via-color2 via-30% via-color3 via-60% to-color4",
+    cls=f"cursor-default min-w-screen min-h-screen text-textmain bg-gradient-to-b from-bggradient1 via-bggradient2 via-30% via-bggradient3 via-60% to-bggradient4",
     routes=[Mount("/public", app=StaticFiles(directory="public"), name="public")],
 )
 rt: typing.Callable = app.route

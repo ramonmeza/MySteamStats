@@ -7,18 +7,25 @@ const config = {
     theme: {
         extend: {
             colors: {
-                "color1": "#9290C3",
-                "color2": "#1B1A55",
-                "color3": "#535C91",
-                "color4": "#070F2B",
+                "bggradient1": "#818181",
+                "bggradient2": "#32292F",
+                "bggradient3": "#32292F",
+                "bggradient4": "#120F11",
 
-                "button": "#00ff00",
-                "button-hover": "#0000ff",
+                "button": "#5299D3",
+                "button-hover": "#9EC6FF",
                 "button-text": "#ffffff",
 
-                "textcolor1": "#ffffff",
-                "textcolor2": "#0000ff",
-                "textcolor3": "#00ff00",
+                "header": "#5299D3",
+
+                "textmain": "#ffffff",
+                "textalt": "#0B5563",
+                "textlink": "#5299D3",
+                "textlinkhover": "#A7C9E4",
+
+                //
+                "app-background": "#a",
+                "app-button": "#"
             }
         }
     },

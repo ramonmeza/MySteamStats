@@ -1,8 +1,10 @@
-from fasthtml.common import A, Body, Button, Div, H1, H2, Img, P, Script, Title
+from fasthtml.common import A, Body, Div, H1, H2, Img, P, Script, Title
 
+from ..components.app_button import AppButton
 from ..components.divider import Divider
 from ..components.down_arrow import DownArrow
 from ..components.game_card import GameCard
+from ..pages.site_footer import SiteFooter
 from ..strings import *
 from ..supported_games import SUPPORTED_GAMES
 
@@ -18,13 +20,9 @@ def Home():
             ),
             Div(
                 Div(
-                    H1(f"{SITE_NAME}", cls="text-6xl font-bold"),
-                    P("Your Games, Your Stats", cls="text-lg italic "),
-                    Button(
-                        "Get Started",
-                        onclick="document.location = '/signin'",
-                        cls="w-max px-4 py-2 rounded text-button-font bg-button hover:bg-button-hover animate-pulse hover:animate-none duration-200",
-                    ),
+                    H1(f"{SITE_NAME}", cls="text-4xl font-bold"),
+                    P("Your Games, Your Stats", cls="text-lg italic"),
+                    AppButton(content="Get Started", href="/signin", pulse=True),
                     cls="grid grid-rows-3 h-max place-items-center",
                 ),
                 cls="min-w-screen min-h-screen flex flex-col justify-center text-center",
@@ -33,38 +31,38 @@ def Home():
             Div(
                 Div(
                     Div(
-                        H2("Stats Dashboard", cls="text-3xl"),
+                        H2("Stats Dashboard", cls="text-xl text-header"),
                         P(
                             "Quickly access your library of games via Steam",
                             cls="italic",
                         ),
                     ),
                     Div(
-                        H2("Game Stats", cls="text-3xl"),
+                        H2("Game Stats", cls="text-xl text-header"),
                         P(
                             "Access hundreds of easily searchable statstical data points",
                             cls="italic",
                         ),
                     ),
                     Div(
-                        H2("Constantly Expanding Library", cls="text-3xl"),
+                        H2("Constantly Expanding Library", cls="text-xl text-header"),
                         P(
                             "We are constantly adding new games and are willing to take your game ",
                             A(
                                 "requests!",
                                 href="/request",
-                                cls="text-textcolor2 hover:text-textcolor3 duration-300",
+                                cls="text-textlink hover:text-textlinkhover duration-300",
                             ),
                             cls="italic",
                         ),
                     ),
-                    cls="container mx-auto text-center py-12 space-y-12",
+                    cls="container mx-auto text-center px-4 py-12 space-y-12",
                 ),
                 cls="min-w-screen",
             ),
             Divider(),
             Div(
-                H2("Supported Games", cls="pt-8 text-3xl"),
+                H2("Supported Games", cls="pt-8 text-2xl text-header"),
                 Div(
                     *[
                         GameCard(app_id, game_name)
@@ -76,8 +74,8 @@ def Home():
             ),
             Div(
                 P(
-                    f"{SITE_NAME} is proudly powered by",
-                    cls="italic text-textcolor3 mb-2",
+                    "Powered by",
+                    cls="italic text-textalt mb-2",
                 ),
                 Div(
                     A(
@@ -96,21 +94,7 @@ def Home():
                 ),
                 cls="container mx-auto text-center",
             ),
-            Div(
-                P(
-                    "We'd love to hear your",
-                    A(
-                        "feedback!",
-                        href="/feedback",
-                        cls="text-textcolor2 hover:text-textcolor3 duration-300",
-                    ),
-                ),
-                P(
-                    COPYRIGHT_NOTICE,
-                    cls="text-textcolor3 text-sm",
-                ),
-                cls="pt-4 pb-12 container mx-auto text-center",
-            ),
+            SiteFooter(),
             Script(src="/public/js/scroll.js"),
         ),
     )

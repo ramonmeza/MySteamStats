@@ -1,5 +1,6 @@
 from fasthtml.common import Body, Button, Div, H1, P, Title
 
+from .components.app_button import AppButton
 from .components.error_icon import ErrorIcon
 from .strings import *
 
@@ -17,10 +18,9 @@ def ErrorPage(request, exception):
                     else None
                 ),
                 P(repr(exception)),
-                Button(
+                AppButton(
                     "Go Back",
-                    onclick="document.location = '/'",
-                    cls="my-8 w-max px-4 py-2 rounded text-button-font bg-button hover:bg-button-hover animate-pulse hover:animate-none duration-200",
+                    href="/",
                 ),
                 cls="container mx-auto text-center",
             )
