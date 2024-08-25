@@ -35,9 +35,9 @@ Request a game (create an issue)
 
 - [ ] Game Stats Page (per game)
     - [ ] Make pretty
-    - [ ] Show game info
-    - [ ] Show stats for selected game (from Steam WebAPI)
-    - [ ] Search/filter stats using user input
+    - [x] Show game info
+    - [x] Show stats for selected game (from Steam WebAPI)
+    - [x] Search/filter stats using user input
 
 - [ ] Feedback Form
     - [ ] Make pretty
