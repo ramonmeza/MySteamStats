@@ -1,6 +1,7 @@
 from fasthtml.common import *  # A, Body, Div, H1, Table, Td, Th, Title, Tr
 
 from ..steamapi import SteamAPI
+from ..strings import *
 from ..supported_games import SUPPORTED_GAMES
 
 
@@ -26,7 +27,7 @@ def Dashboard(steam_api_key: str, steam_id: int):
     )["response"]
 
     return (
-        Title("GameStats: Dashboard"),
+        Title(f"{SITE_NAME}: Dashboard"),
         Body(
             Div(
                 Div(
@@ -53,7 +54,7 @@ def Dashboard(steam_api_key: str, steam_id: int):
                             ),
                         ),
                         P(
-                            "Copyright © 2024 GameStats. All rights reserved.",
+                            COPYRIGHT_NOTICE,
                             cls="text-textcolor3 text-sm",
                         ),
                         cls="mt-auto",

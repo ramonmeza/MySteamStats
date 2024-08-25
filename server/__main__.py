@@ -22,8 +22,18 @@ from .pages.email_form import EmailForm
 from .pages.game_stats import GameStats
 from .pages.home import Home
 from .pages.signin import SignIn
+from .strings import *
 from .toasts import set_toast, handle_toasts
 from .urls import *
+
+
+if os.getenv("HOST_URL", None) is None:
+    print("You must define the environment variable HOST_URL")
+    exit(-1)
+
+if not os.getenv("STEAM_SECRET", None):
+    print("You must define the environment variable STEAM_SECRET")
+    exit(-1)
 
 
 # create cache for all requests
@@ -103,7 +113,8 @@ async def get(session):
 @rt("/signin/steam")
 async def get():
     # hand-off authentication to steam
-    return SteamAuth.authorize(callback_url=f"{os.getenv('HOST_URL')}/auth/steam")
+    callback_url = os.getenv("HOST_URL")
+    return SteamAuth.authorize(callback_url=f"{callback_url}/auth/steam")
 
 
 @rt("/signout")
@@ -142,14 +153,9 @@ async def get(app_id: int, session):
 
 @rt("/feedback")
 async def get():
-    return EmailForm("GameStats Feedback")
+    return EmailForm(f"{SITE_NAME} Feedback")
 
 
 @rt("/request")
 async def get():
-    return EmailForm("GameStats Game Request")
-
-
-@rt("/throw")
-async def get():
-    raise Exception("Butthole butter")
+    return EmailForm(f"{SITE_NAME} Game Request")

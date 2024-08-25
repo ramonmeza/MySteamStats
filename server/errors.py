@@ -1,11 +1,12 @@
 from fasthtml.common import Body, Button, Div, H1, P, Title
 
 from .components.error_icon import ErrorIcon
+from .strings import *
 
 
 def ErrorPage(request, exception):
     return (
-        Title(f"GameStats: {str(exception)}"),
+        Title(f"{SITE_NAME}: {str(exception)}"),
         Body(
             Div(
                 ErrorIcon(cls="h-56 w-56 mx-auto"),

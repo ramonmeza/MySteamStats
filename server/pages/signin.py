@@ -1,15 +1,17 @@
 from fasthtml.common import A, Body, Div, H1, Img, P, Title
 
+from ..strings import *
+
 
 def SignIn():
     return (
-        Title("GameStats: Sign In"),
+        Title(f"{SITE_NAME}: Sign In"),
         Body(
             Div(
                 Div(
-                    H1("Sign In to GameStats", cls="text-3xl"),
+                    H1(f"Sign In to {SITE_NAME}", cls="text-3xl"),
                     P(
-                        "This site utilizes the Steam Web API. You must sign in using your Steam account to access all of GameStats' features. Press the button below to get started!"
+                        f"This site utilizes the Steam Web API. You must sign in using your Steam account to access all of {SITE_NAME + '\'' if SITE_NAME.lower().endswith('s') else SITE_NAME + '\'s'} features. Press the button below to get started!"
                     ),
                     A(
                         Img(
@@ -33,7 +35,7 @@ def SignIn():
                     ),
                 ),
                 P(
-                    "Copyright © 2024 GameStats. All rights reserved.",
+                    COPYRIGHT_NOTICE,
                     cls="text-textcolor3 text-sm",
                 ),
                 cls="absolute bottom-6 left-0 right-0 text-center",

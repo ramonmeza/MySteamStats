@@ -1,4 +1,4 @@
-# GameStats
+# MySteamStats
 
 Visualize your stats from your favorite games on Steam!
 
@@ -51,7 +51,17 @@ Request a game (create an issue)
     - [x] Make pretty
     - [ ] Email Support
 
+### Environment Variables
+| Name | Description |
+| - | - |
+| `HOST_URL` | URL of the web server (needed for Steam API authentication callback) |
+| `ENABLE_DEBUG` | Whether to enable debug mode (Starlette error are shown on `500 Internal Server Error` instead of using custom exception handler) |
+| `STEAM_SECRET` | Steam API key, available [here](https://steamcommunity.com/dev/apikey) |
+
 ### CI
+
+#### TailWindCSS
+##### Get CLI tool
 ```sh
 # `os` can be one of the following
 # linux-arm64 
@@ -66,14 +76,17 @@ chmod +x tailwindcss-{os}
 mv tailwindcss-{os} tailwindcss
 ```
 
-### Compile TailwindCSS
+#### Compile TailwindCSS
 ```sh
 .\tailwindcss.exe -c tailwind.config.js -i tailwind.css -o public/css/styles.css
 ```
 
-### Environment Variables
-| Name | Description |
-| - | - |
-| `HOST_URL` | URL of the web server |
-| `ENABLE_DEBUG` | Whether to enable debug mode (Starlette error are shown on `500 Internal Server Error` instead of using custom exception handler) |
-| `STEAM_SECRET` | Steam API key, available [here](https://steamcommunity.com/dev/apikey) |
+#### Docker
+##### Build
+```sh
+docker build . --tag mysteamstatsapp
+```
+##### Run
+```sh
+docker run -e STEAM_SECRET="" -p 8000:8000 mysteamstatsapp
+```

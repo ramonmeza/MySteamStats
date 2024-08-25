@@ -12,6 +12,11 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "Build Dockerfile",
+            "type": "shell",
+            "command": "docker build . --tag mysteamstatsapp",
         }
     ]
 }

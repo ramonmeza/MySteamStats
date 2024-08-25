@@ -3,6 +3,7 @@ import json
 from fasthtml.common import *
 
 from ..steamapi import SteamAPI
+from ..strings import *
 from ..supported_games import SUPPORTED_GAMES
 
 
@@ -15,7 +16,7 @@ def GameStats(steam_api_key: str, steam_id: int, app_id: int):
     game_name: str = details["name"]
     
     return (
-        Title(f"GameStats: {game_name}"),
+        Title(f"{SITE_NAME}: {game_name}"),
         Body(
             Link(rel="stylesheet", href="/public/css/highlight.min.css"),
             Script(src="/public/js/highlight.min.js"),
@@ -61,7 +62,7 @@ def GameStats(steam_api_key: str, steam_id: int, app_id: int):
                             ),
                         ),
                         P(
-                            "Copyright © 2024 GameStats. All rights reserved.",
+                            COPYRIGHT_NOTICE,
                             cls="text-textcolor3 text-sm",
                         ),
                         cls="mt-auto",

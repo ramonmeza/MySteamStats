@@ -3,12 +3,13 @@ from fasthtml.common import A, Body, Button, Div, H1, H2, Img, P, Script, Title
 from ..components.divider import Divider
 from ..components.down_arrow import DownArrow
 from ..components.game_card import GameCard
+from ..strings import *
 from ..supported_games import SUPPORTED_GAMES
 
 
 def Home():
     return (
-        Title("GameStats: Your Games, Your Stats"),
+        Title(f"{SITE_NAME}: Your Games, Your Stats"),
         Body(
             DownArrow(
                 onclick="clickScrollArrow();",
@@ -17,7 +18,7 @@ def Home():
             ),
             Div(
                 Div(
-                    H1("GameStats", cls="text-6xl font-bold"),
+                    H1(f"{SITE_NAME}", cls="text-6xl font-bold"),
                     P("Your Games, Your Stats", cls="text-lg italic "),
                     Button(
                         "Get Started",
@@ -75,7 +76,7 @@ def Home():
             ),
             Div(
                 P(
-                    "GameStats is proudly powered by",
+                    f"{SITE_NAME} is proudly powered by",
                     cls="italic text-textcolor3 mb-2",
                 ),
                 Div(
@@ -105,7 +106,7 @@ def Home():
                     ),
                 ),
                 P(
-                    "Copyright © 2024 GameStats. All rights reserved.",
+                    COPYRIGHT_NOTICE,
                     cls="text-textcolor3 text-sm",
                 ),
                 cls="pt-4 pb-12 container mx-auto text-center",
