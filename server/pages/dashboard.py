@@ -12,7 +12,7 @@ def DashboardCard(game: dict):
         Img(src=details["header_image"], cls="h-16 rounded-l-lg"),
         Div(details["name"], cls="pl-4 text-lg my-auto"),
         Div(
-            f"{game['playtime_forever']:.1f} hrs",
+            f"{game['playtime_forever'] / 60:.1f} hrs",
             cls="text-xs my-auto ml-auto mr-4 text-textcolor2",
         ),
         onclick=f"document.location = '/stats/{app_id}'",
