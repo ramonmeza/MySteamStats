@@ -33,18 +33,18 @@ Request a game (create an issue)
     - [x] Make pretty
     - [x] Display supported games that user has in a list, where games are clickable
 
-- [ ] Game Stats Page (per game)
-    - [ ] Make pretty
+- [x] Game Stats Page (per game)
+    - [x] Make pretty
     - [x] Show game info
     - [x] Show stats for selected game (from Steam WebAPI)
     - [x] Search/filter stats using user input
 
 - [ ] Feedback Form
-    - [ ] Make pretty
+    - [x] Make pretty
     - [ ] Send email to me
 
 - [ ] Game Request Form
-    - [ ] Make pretty
+    - [x] Make pretty
     - [ ] Send email to me
 
 - [ ] Error Pages

@@ -18,7 +18,7 @@ from fasthtml.common import (
 from .authentication import user_auth_before, SteamAuth
 from .errors import exception_handlers
 from .pages.dashboard import Dashboard
-from .pages.email_form import EmailForm
+from .pages.feedback_form import FeedbackForm
 from .pages.game_stats import GameStats
 from .pages.home import Home
 from .strings import *
@@ -146,9 +146,9 @@ async def get(app_id: int, session):
 
 @rt("/feedback")
 async def get():
-    return EmailForm(f"{SITE_NAME} Feedback")
+    return FeedbackForm(reason="App Feedback")
 
 
 @rt("/request")
 async def get():
-    return EmailForm(f"{SITE_NAME} Game Request")
+    return FeedbackForm(reason="Game Request")

@@ -400,13 +400,13 @@ socks = ["socksio (==1.*)"]
 
 [[package]]
 name = "idna"
-version = "3.7"
+version = "3.8"
 description = "Internationalized Domain Names in Applications (IDNA)"
 optional = false
-python-versions = ">=3.5"
+python-versions = ">=3.6"
 files = [
-    {file = "idna-3.7-py3-none-any.whl", hash = "sha256:82fee1fc78add43492d3a1898bfa6d8a904cc97d8427f683ed8e798d07761aa0"},
-    {file = "idna-3.7.tar.gz", hash = "sha256:028ff3aadf0609c1fd278d8ea3089299412a7a8b9bd005dd08b9f8285bcb5cfc"},
+    {file = "idna-3.8-py3-none-any.whl", hash = "sha256:050b4e5baadcd44d760cedbd2b8e639f2ff89bbc7a5730fcc662954303377aac"},
+    {file = "idna-3.8.tar.gz", hash = "sha256:d838c2c0ed6fced7693d5e8ab8e734d5f8fda53a039c0164afb0b82e771e3603"},
 ]
 
 [[package]]
@@ -515,13 +515,13 @@ cli = ["click (>=5.0)"]
 
 [[package]]
 name = "python-fasthtml"
-version = "0.4.4"
+version = "0.4.5"
 description = "The fastest way to create an HTML app"
 optional = false
 python-versions = ">=3.10"
 files = [
-    {file = "python-fasthtml-0.4.4.tar.gz", hash = "sha256:b8f493c04e4d0454df2bca36d7a19be780a1388ac86c5a388a074dcd4e804fde"},
-    {file = "python_fasthtml-0.4.4-py3-none-any.whl", hash = "sha256:6f9b0e7fd973cf023dc1a8cb6ad65b113d0b56201e02ea1477bdfec1d4f7e022"},
+    {file = "python-fasthtml-0.4.5.tar.gz", hash = "sha256:e3a8b1de9097f91097fbf6cd62cf4ff72f708738428f4ede5c69a2a110401f2c"},
+    {file = "python_fasthtml-0.4.5-py3-none-any.whl", hash = "sha256:ffb9d6ad1eedb5fcdada96d633a8fd4d9102693183360846f8b2e88b8c8b806d"},
 ]
 
 [package.dependencies]
