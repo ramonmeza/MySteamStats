@@ -1,51 +1,62 @@
-from fasthtml.common import *  # A, Body, Div, H1, Table, Td, Th, Title, Tr
+from fasthtml.common import *
 
 from ..components.app_button import AppButton
-from ..pages.site_footer import SiteFooter
+from ..components.app_image import AppImage
+from ..components.app_hamburger_menu import AppHamburgerMenu
+from ..components.app_layout import AppLayout
+from ..components.app_page import AppPage
+from ..components.app_list import AppList
+
 from ..steamapi import SteamAPI
 from ..strings import *
 from ..supported_games import SUPPORTED_GAMES
 
 
-def DashboardCard(game: dict):
-    app_id = game["appid"]
-    details: dict = SteamAPI.get_app_details(app_id)[str(app_id)]["data"]
+def GameListItem(app_id: int, **kwargs):
+    details: dict = SteamAPI.get_app_details(app_id)[str(app_id)]
+    if not bool(details["success"]):
+        print(f"Failed to get details for owned game with appid {app_id}")
+        # @todo error-handling, maybe an error toast would be nice
+        return None
 
-    return Div(
-        Img(src=details["header_image"], cls="h-16 rounded-l-lg"),
-        Div(details["name"], cls="pl-4 text-lg my-auto"),
-        Div(
-            f"{game['playtime_forever'] / 60:.1f} hrs",
-            cls="text-xs my-auto ml-auto mr-4 text-textalt",
-        ),
-        onclick=f"document.location = '/stats/{app_id}'",
-        cls="flex flex-row bg-color1 hover:bg-color2 rounded-lg cursor-pointer shadow hover:shadow-lg transition-shadow",
+    details = details["data"]
+
+    return AppImage(
+        src=details["header_image"],
+        alt=details["name"],
+        href=f"/stats/{app_id}",
+        data_searchterms=[int(app_id), details["name"]],
     )
 
 
 def Dashboard(steam_api_key: str, steam_id: int):
-    data: dict = SteamAPI.IPlayerService.GetOwnedGames(
+    owned_games: dict = SteamAPI.IPlayerService.GetOwnedGames(
         key=steam_api_key, steamid=steam_id, appids_filter=SUPPORTED_GAMES.keys()
     )["response"]
 
-    return (
-        Title(f"{SITE_NAME}: Dashboard"),
-        Body(
-            Div(
-                Div(
-                    H1("Dashboard", cls="text-3xl"),
-                    AppButton("Sign Out", href="/signout", extracls="ml-auto"),
-                    cls="grid grid-cols-2 py-8",
+    return AppLayout(
+        AppPage(
+            AppHamburgerMenu(AppButton("Sign Out", href="/signout")),
+            H2(
+                "Game ",
+                Span("Dashboard", cls="text-app-accent"),
+                cls="text-4xl font-black shadow-lg text-center",
+            ),
+            AppList(
+                *[GameListItem(int(game["appid"])) for game in owned_games["games"]],
+                searchable=True,
+                placeholder="Search for a game...",
+                no_results_found_message=Span(
+                    "Game not supported. Make a ",
+                    A(
+                        "request",
+                        href="/request",
+                        cls="text-app-accent hover:text-app-accent-hover duration-300 underline",
+                    ),
+                    " to support this game!",
                 ),
-                Div(
-                    *[DashboardCard(game) for game in data["games"]],
-                    cls="grid grid-rows-1 gap-4",
-                ),
-                Div(
-                    SiteFooter(cls="mt-auto"),
-                    cls="py-12 flex flex-col text-center grow",
-                ),
-                cls="px-4 flex flex-col min-h-screen",
             ),
         ),
+        Script(src="/public/js/components/appList.js"),
+        Script(src="/public/js/components/appHamburgerMenu.js"),
     )

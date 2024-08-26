@@ -21,7 +21,6 @@ from .pages.dashboard import Dashboard
 from .pages.email_form import EmailForm
 from .pages.game_stats import GameStats
 from .pages.home import Home
-from .pages.signin import SignIn
 from .strings import *
 from .toasts import set_toast, handle_toasts
 from .urls import *
@@ -35,6 +34,9 @@ if not os.getenv("STEAM_SECRET", None):
     print("You must define the environment variable STEAM_SECRET")
     exit(-1)
 
+ENABLE_DEBUG: bool = (
+    True if os.getenv("ENABLE_DEBUG", "false").lower() == "true" else False
+)
 
 # create cache for all requests
 requests_cache.install_cache("requests_cache")
@@ -62,9 +64,6 @@ beforeware = [
 ]
 
 # load tailwind config and set headers
-ENABLE_DEBUG: bool = (
-    True if os.getenv("ENABLE_DEBUG", "false").lower() == "true" else False
-)
 if ENABLE_DEBUG:
     with open("tailwind.config.js") as fp:
         tailwind_config_code = fp.read().replace("\n", "")
@@ -88,7 +87,6 @@ app: FastHTML = FastHTML(
     before=beforeware,
     exception_handlers=exception_handlers,
     hdrs=hdrs,
-    cls=f"cursor-default min-w-screen min-h-screen text-textmain bg-gradient-to-b from-bggradient1 via-bggradient2 via-30% via-bggradient3 via-60% to-bggradient4",
     routes=[Mount("/public", app=StaticFiles(directory="public"), name="public")],
 )
 rt: typing.Callable = app.route
@@ -103,11 +101,6 @@ async def get(session):
 
     # if not signed in, goto home page
     return Home()
-
-
-@rt("/signin")
-async def get(session):
-    return SignIn()
 
 
 @rt("/signin/steam")

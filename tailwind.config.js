@@ -3,29 +3,22 @@ const config = {
         "./server/*.py",
         "./server/components/*.py",
         "./server/pages/*.py",
+        "./public/js/*.js"
     ],
     theme: {
         extend: {
             colors: {
-                "bggradient1": "#818181",
-                "bggradient2": "#32292F",
-                "bggradient3": "#32292F",
-                "bggradient4": "#120F11",
+                "app-background": "#121212",
+                "app-layer-background": "#444444",
+                "app-layer-background-hover": "#666666",
 
-                "button": "#5299D3",
-                "button-hover": "#9EC6FF",
-                "button-text": "#ffffff",
+                "app-accent": "#DC6ACF",
+                "app-accent-hover": "#ECACE4",
 
-                "header": "#5299D3",
+                "app-text-main": "#ffffff",
 
-                "textmain": "#ffffff",
-                "textalt": "#0B5563",
-                "textlink": "#5299D3",
-                "textlinkhover": "#A7C9E4",
-
-                //
-                "app-background": "#a",
-                "app-button": "#"
+                "app-input-background": "#444444",
+                "app-input-text": "#bababa",
             }
         }
     },

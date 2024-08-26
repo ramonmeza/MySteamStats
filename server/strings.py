@@ -1,1 +1,1 @@
-SITE_NAME: str = "MySteamStats"
+APP_NAME: str = "MySteamStats"

@@ -1,5 +1,5 @@
 function updateArrowDirection() {
-    const pageArrow = document.getElementById("PageArrow");
+    const pageArrow = document.getElementById("AppScrollArrow");
     const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
     let nextScroll = currentScroll + 1 + window.innerHeight;
     
@@ -15,7 +15,6 @@ function updateArrowDirection() {
 addEventListener("scroll", updateArrowDirection);
 
 function clickScrollArrow() {
-    const pageArrow = document.getElementById("PageArrow");
     const cur = document.documentElement.scrollTop || document.body.scrollTop;
     const next = cur + 1 + window.innerHeight;
     
