@@ -19,6 +19,7 @@ def GameStats(steam_api_key: str, steam_id: int, app_id: int):
                 details["name"],
                 cls="text-4xl text-app-accent dark:text-app-dark-accent font-black text-center",
             ),
+            # @todo: add search input and search list for stats
         ),
         background=details["background"],
         steamid=steam_id,

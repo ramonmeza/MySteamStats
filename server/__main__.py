@@ -156,7 +156,9 @@ async def get(request, session):
         ),
     )
 
+
 @rt("/feedback")
 async def post(request):
+    # @todo: finish this
     print(request)
     return FeedbackSubmitted()
