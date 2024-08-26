@@ -3,6 +3,7 @@ from fasthtml.common import Div, H1, H2, P, Span
 from ..components.app_button import AppButton
 from ..components.app_image import AppImage
 from ..components.app_layout import AppLayout
+from ..components.app_link import AppLink
 from ..components.app_list import AppList
 from ..components.app_page import AppPage
 
@@ -68,7 +69,19 @@ def Home():
                         for app_id in SUPPORTED_GAMES.keys()
                     ],
                 ),
-            )
+            ),
+            Div(
+                P(
+                    "We'd love to hear your ",
+                    AppLink(
+                        "feedback",
+                        href="/feedback?reason=App Feedback",
+                    ),
+                    "!",
+                    cls="text-sm text-center",
+                ),
+                cls="w-full p-8",
+            ),
         ),
         navigation_arrow=True,
     )

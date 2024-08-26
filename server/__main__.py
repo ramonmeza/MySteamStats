@@ -53,11 +53,9 @@ beforeware = [
             r".*\.js",
             "/",
             "/feedback",
-            "/request",
             "/signin",
             r"/signin/.*",
             r"/auth/.*",
-            "/throw",
         ],
     ),
     Beforeware(handle_toasts),
@@ -145,10 +143,5 @@ async def get(app_id: int, session):
 
 
 @rt("/feedback")
-async def get():
-    return FeedbackForm(reason="App Feedback")
-
-
-@rt("/request")
-async def get():
-    return FeedbackForm(reason="Game Request")
+async def get(request):
+    return FeedbackForm(reason=request.query_params["reason"])

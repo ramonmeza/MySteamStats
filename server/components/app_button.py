@@ -46,5 +46,6 @@ def AppButton(
     return Button(
         content,
         onclick=applied_onclick,
+        type="button",
         cls=appliedcls,
     )

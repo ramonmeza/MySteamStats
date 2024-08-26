@@ -1,11 +1,12 @@
 from fasthtml.common import *
 
 from ..components.app_button import AppButton
-from ..components.app_image import AppImage
 from ..components.app_hamburger_menu import AppHamburgerMenu
+from ..components.app_image import AppImage
 from ..components.app_layout import AppLayout
-from ..components.app_page import AppPage
+from ..components.app_link import AppLink
 from ..components.app_list import AppList
+from ..components.app_page import AppPage
 
 from ..steamapi import SteamAPI
 from ..strings import *
@@ -48,13 +49,24 @@ def Dashboard(steam_api_key: str, steam_id: int):
                 placeholder="Search for a game...",
                 no_results_found_message=Span(
                     "Game not supported. Make a ",
-                    A(
+                    AppLink(
                         "request",
-                        href="/request",
-                        cls="text-app-accent hover:text-app-accent-hover duration-300 underline",
+                        href="/feedback?reason=Request Game",
                     ),
                     " to support this game!",
                 ),
+            ),
+            Div(
+                P(
+                    "We'd love to hear your ",
+                    AppLink(
+                        "feedback",
+                        href="/feedback?reason=App Feedback",
+                    ),
+                    "!",
+                    cls="text-sm text-center",
+                ),
+                cls="w-full p-8",
             ),
         ),
         Script(src="/public/js/components/appList.js"),

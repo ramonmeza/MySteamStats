@@ -16,9 +16,12 @@ def FeedbackForm(reason: str):
                     APP_NAME,
                     cls="font-black text-4xl p-4 text-center",
                 ),
-                Div(
-                    H2("Feedback Form", cls="text-2xl font-bold text-app-accent"),
-                    H2("Reason", cls="text-lg font-semibold"),
+                H2(
+                    "Feedback Form",
+                    cls="text-2xl font-bold text-app-accent text-center",
+                ),
+                Form(
+                    Label("Reason", cls="text-lg font-semibold"),
                     Select(
                         *[
                             Option(r, selected=True if reason == r else False)
@@ -26,12 +29,12 @@ def FeedbackForm(reason: str):
                         ],
                         cls="bg-app-input-background text-app-input-text px-2 py-1 border-2 border-transparent focus:outline-none focus:ring-2 focus:ring-app-accent",
                     ),
-                    H2("Message", cls="text-lg font-semibold"),
+                    Label("Message", cls="text-lg font-semibold"),
                     Textarea(
                         placeholder="Write your message here...",
                         cls="bg-app-input-background text-app-input-text px-2 py-1 border-2 border-transparent focus:outline-none focus:ring-2 focus:ring-app-accent",
                     ),
-                    AppButton("Submit"),
+                    AppButton("Submit", extracls="mx-auto"),
                     cls="grid grid-cols-1 text-center place-items-stretch gap-4",
                 ),
                 cls="container mx-auto",

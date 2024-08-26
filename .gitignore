@@ -1,3 +1,6 @@
+# styles.css is built during deployment
+public/css/styles.css
+
 .sesskey
 *.sqlite
 *.exe
