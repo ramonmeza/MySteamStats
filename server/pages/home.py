@@ -65,9 +65,10 @@ def Home():
                                 "header_image"
                             ],
                         )
-                        for app_id, game_name in SUPPORTED_GAMES.items()
+                        for app_id in SUPPORTED_GAMES.keys()
                     ],
                 ),
             )
         ),
+        navigation_arrow=True,
     )

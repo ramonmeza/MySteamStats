@@ -59,34 +59,18 @@ Request a game (create an issue)
 | `STEAM_SECRET` | Steam API key, available [here](https://steamcommunity.com/dev/apikey) |
 
 ### CI
-
-#### TailWindCSS
-##### Get CLI tool
-```sh
-# `os` can be one of the following
-# linux-arm64 
-# linux-armv7 
-# linux-x64 
-# macos-arm64 
-# macos-x64 
-# windows-arm64.exe
-# windows-x64.exe
-curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-{os}
-chmod +x tailwindcss-{os}
-mv tailwindcss-{os} tailwindcss
-```
-
 #### Compile TailwindCSS
 ```sh
 .\tailwindcss.exe -c tailwind.config.js -i tailwind.css -o public/css/styles.css
 ```
-
-#### Docker
-##### Build
+#### Docker Build
 ```sh
 docker build . --tag mysteamstatsapp
 ```
-##### Run
+
+#### Docker Run
+Steam authentication may not work when ran within a Docker container. This is because the callback url (HOST_URL) isn't an address that Steam can verify, or something.
+
 ```sh
-docker run -e STEAM_SECRET="" -p 8000:8000 mysteamstatsapp
+docker run -e HOST_URL="" -e STEAM_SECRET="" -p 8000:8000 mysteamstatsapp
 ```
