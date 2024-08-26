@@ -11,7 +11,9 @@
             "args": [
                 "server.__main__:app",
                 "--reload",
-                "--reload-include", "tailwind.config.js"
+                "--reload-include", "tailwind.config.js",
+                "--reload-dir", "server",
+                "--reload-dir", "public",
             ],
             "jinja": true,
             "justMyCode": false,

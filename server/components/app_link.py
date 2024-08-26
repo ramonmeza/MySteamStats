@@ -1,9 +1,9 @@
 from fasthtml.common import *
 
 
-def AppLink(content, href: str):
+def AppLink(text: str, href: str):
     return A(
-        content,
+        text,
         href=href,
-        cls="text-app-accent hover:text-app-accent-hover underline duration-300",
+        cls="text-app-accent dark:text-app-dark-accent hover:text-app-accent-hover dark:hover:text-app-dark-accent-hover",
     )

@@ -13,7 +13,7 @@ def user_auth_before(request: Request, session):
     if not auth:
         set_toast(session, "error", "You must sign in!")
         return RedirectResponse(
-            "/signin",
+            "/",
             status_code=303,
         )
 

@@ -1,4 +1,5 @@
 const config = {
+    darkMode: "selector",
     content: [
         "./server/*.py",
         "./server/components/*.py",
@@ -8,21 +9,45 @@ const config = {
     theme: {
         extend: {
             colors: {
-                "app-background": "#121212",
-                "app-layer-background": "#444444",
-                "app-layer-background-hover": "#666666",
+                "app-bg": "#ffffff",
+                "app-dark-bg": "#000000",
 
-                "app-accent": "#DC6ACF",
-                "app-accent-hover": "#ECACE4",
+                "app-bg-hover": "#555555",
+                "app-dark-bg-hover": "#aaaaaa",
 
-                "app-text-main": "#ffffff",
+                "app-accent": "#00A7E1",
+                "app-dark-accent": "#8300E0",
+                
+                "app-accent-hover": "#8300E0",
+                "app-dark-accent-hover": "#00A7E1",
 
-                "app-input-background": "#444444",
-                "app-input-text": "#bababa",
+                "app-text": "#000000",
+                "app-dark-text": "#ffffff",
+                
+                "app-input": "#dadada",
+                "app-dark-input": "#222222",
+                
+                "app-input-text": "#000000",
+                "app-dark-input-text": "#ffffff",
+            },
+            textShadow: {
+                sm: "0 1px 2px var(--tw-shadow-color)",
+                DEFAULT: "0 2px 4px var(--tw-shadow-color)",
+                lg: "0 8px 16px var(--tw-shadow-color)",
             }
         }
     },
-    plugins: [],
+    plugins: [
+        function({ matchUtilities, theme }){
+            matchUtilities({
+                "text-shadow": (value) => ({
+                    textShadow: value,
+                }),
+            }, {
+                values: theme("textShadow")
+            })
+        },
+    ],
 };
 
 try {

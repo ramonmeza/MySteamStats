@@ -16,7 +16,7 @@ addEventListener("scroll", updateArrowDirection);
 
 function clickScrollArrow() {
     const cur = document.documentElement.scrollTop || document.body.scrollTop;
-    const next = cur + 1 + window.innerHeight;
+    const next = cur + window.innerHeight;
     
     if (next >= document.body.scrollHeight) {
         window.scrollTo({top: 0, behavior: "smooth"});

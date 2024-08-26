@@ -1,46 +1,34 @@
 from fasthtml.common import *
 
 from ..components.app_button import AppButton
-from ..components.app_hamburger_menu import AppHamburgerMenu
-from ..components.app_layout import AppLayout
+from ..components.app_input import AppInput, AppTextArea
 from ..components.app_page import AppPage
-from ..strings import APP_NAME
 
 
-def FeedbackForm(reason: str):
-    return AppLayout(
-        AppPage(
-            AppHamburgerMenu(AppButton("Home", href="/")),
-            Div(
-                H1(
-                    APP_NAME,
-                    cls="font-black text-4xl p-4 text-center",
-                ),
-                H2(
-                    "Feedback Form",
-                    cls="text-2xl font-bold text-app-accent text-center",
-                ),
-                Form(
-                    Label("Reason", cls="text-lg font-semibold"),
-                    Select(
-                        *[
-                            Option(r, selected=True if reason == r else False)
-                            for r in ["App Feedback", "Game Request"]
-                        ],
-                        cls="bg-app-input-background text-app-input-text px-2 py-1 border-2 border-transparent focus:outline-none focus:ring-2 focus:ring-app-accent",
-                    ),
-                    Label("Message", cls="text-lg font-semibold"),
-                    Textarea(
-                        placeholder="Write your message here...",
-                        cls="bg-app-input-background text-app-input-text px-2 py-1 border-2 border-transparent focus:outline-none focus:ring-2 focus:ring-app-accent",
-                    ),
-                    AppButton("Submit", extracls="mx-auto"),
-                    cls="grid grid-cols-1 text-center place-items-stretch gap-4",
-                ),
-                cls="container mx-auto",
+def FeedbackSubmitted():
+    return Div(
+        P("Thanks for submitting your feedback!"), A(AppButton("Go Home"), href="/")
+    )
+
+
+def FeedbackForm(reason: str = "", steamid=None):
+    return AppPage(
+        Div(
+            H2(
+                "Feedback Form",
+                cls="mb-8 text-4xl text-app-accent dark:text-app-dark-accent font-black text-center",
             ),
+            Form(
+                AppInput(reason, readonly=bool(reason)),
+                AppTextArea(
+                    "Provide your feedback as clearly and concisely as possible to ensure our timely response."
+                ),
+                AppButton("Submit", type="submit"),
+                hx_post="/feedback",
+                hx_target="#feedbackForm",
+                id="feedbackForm",
+            ),
+            cls="container mx-auto px-4 text-center",
         ),
-        Script(src="/public/js/components/appList.js"),
-        Script(src="/public/js/components/appHamburgerMenu.js"),
-        title=f"{APP_NAME}: {reason}",
+        steamid=steamid,
     )

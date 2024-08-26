@@ -1,74 +1,42 @@
 from fasthtml.common import *
 
-from ..components.app_button import AppButton
-from ..components.app_hamburger_menu import AppHamburgerMenu
-from ..components.app_image import AppImage
-from ..components.app_layout import AppLayout
+from ..components.app_input import AppSearchInput
 from ..components.app_link import AppLink
-from ..components.app_list import AppList
+from ..components.app_lists import GameList
 from ..components.app_page import AppPage
-
 from ..steamapi import SteamAPI
-from ..strings import *
 from ..supported_games import SUPPORTED_GAMES
-
-
-def GameListItem(app_id: int, **kwargs):
-    details: dict = SteamAPI.get_app_details(app_id)[str(app_id)]
-    if not bool(details["success"]):
-        print(f"Failed to get details for owned game with appid {app_id}")
-        # @todo error-handling, maybe an error toast would be nice
-        return None
-
-    details = details["data"]
-
-    return AppImage(
-        src=details["header_image"],
-        alt=details["name"],
-        href=f"/stats/{app_id}",
-        data_searchterms=[int(app_id), details["name"]],
-    )
 
 
 def Dashboard(steam_api_key: str, steam_id: int):
     owned_games: dict = SteamAPI.IPlayerService.GetOwnedGames(
-        key=steam_api_key, steamid=steam_id, appids_filter=SUPPORTED_GAMES.keys()
-    )["response"]
+        key=steam_api_key,
+        steamid=steam_id,
+        include_free_sub=True,
+        appids_filter=[game["appid"] for game in SUPPORTED_GAMES],
+    )["response"]["games"]
 
-    return AppLayout(
-        AppPage(
-            AppHamburgerMenu(AppButton("Sign Out", href="/signout")),
+    return AppPage(
+        Div(
             H2(
-                "Game ",
-                Span("Dashboard", cls="text-app-accent"),
-                cls="text-4xl font-black shadow-lg text-center",
+                "Dashboard",
+                cls="mb-8 text-4xl text-app-accent dark:text-app-dark-accent font-black text-center",
             ),
-            AppList(
-                *[GameListItem(int(game["appid"])) for game in owned_games["games"]],
-                searchable=True,
-                placeholder="Search for a game...",
-                no_results_found_message=Span(
-                    "Game not supported. Make a ",
+            AppSearchInput(
+                "Search for a game...",
+                no_results_message=P(
+                    "No games found! Feel free to ",
                     AppLink(
-                        "request",
-                        href="/feedback?reason=Request Game",
-                    ),
-                    " to support this game!",
-                ),
-            ),
-            Div(
-                P(
-                    "We'd love to hear your ",
-                    AppLink(
-                        "feedback",
-                        href="/feedback?reason=App Feedback",
+                        "request a game",
+                        href="/feedback?reason=Game Request",
                     ),
                     "!",
                     cls="text-sm text-center",
                 ),
-                cls="w-full p-8",
             ),
+            GameList(owned_games),
+            cls="container mx-auto px-4",
         ),
-        Script(src="/public/js/components/appList.js"),
-        Script(src="/public/js/components/appHamburgerMenu.js"),
+        Script(src="/public/js/components/filterList.js"),
+        steamid=steam_id,
     )

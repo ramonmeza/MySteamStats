@@ -16,14 +16,12 @@ from fasthtml.common import (
 
 
 from .authentication import user_auth_before, SteamAuth
-from .errors import exception_handlers
 from .pages.dashboard import Dashboard
-from .pages.feedback_form import FeedbackForm
+from .pages.error import Error
+from .pages.feedback_form import FeedbackForm, FeedbackSubmitted
 from .pages.game_stats import GameStats
 from .pages.home import Home
-from .strings import *
 from .toasts import set_toast, handle_toasts
-from .urls import *
 
 
 if os.getenv("HOST_URL", None) is None:
@@ -78,6 +76,12 @@ hdrs = (
         Link(rel="stylesheet", href="/public/css/styles.css"),
     )
 )
+
+# error handlers
+exception_handlers = {
+    500: lambda req, exc: Error(req, exc),
+    404: lambda req, exc: Error(req, exc),
+}
 
 # define app and routes
 app: FastHTML = FastHTML(
@@ -143,5 +147,16 @@ async def get(app_id: int, session):
 
 
 @rt("/feedback")
-async def get(request):
-    return FeedbackForm(reason=request.query_params["reason"])
+async def get(request, session):
+
+    return FeedbackForm(
+        steamid=session.get("auth", None),
+        reason=(
+            request.query_params["reason"] if "reason" in request.query_params else None
+        ),
+    )
+
+@rt("/feedback")
+async def post(request):
+    print(request)
+    return FeedbackSubmitted()
