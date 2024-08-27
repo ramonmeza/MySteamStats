@@ -14,6 +14,9 @@ https://www.MySteamStats.com/
 | `HOST_URL` | URL of the web server (needed for Steam API authentication callback) |
 | `ENABLE_DEBUG` | Whether to enable debug mode (Starlette error are shown on `500 Internal Server Error` instead of using custom exception handler) |
 | `STEAM_SECRET` | Steam API key, available [here](https://steamcommunity.com/dev/apikey) |
+| `AWS_ACCESS_KEY_ID` | The access key for your AWS account. |
+| `AWS_SECRET_ACCESS_KEY` | The secret key for your AWS account.  |
+
 
 ### CI
 #### Compile TailwindCSS
@@ -35,7 +38,7 @@ docker run -e HOST_URL="" -e STEAM_SECRET="" -p 8000:8000 mysteamstatsapp
 ## Roadmap
 This is a changing list of things I need to do.
 
-- [ ] **Make forms functional**
+- [x] Make forms functional
 
 - [ ] Utilize Steam API to personalize menu with Steam icon and Steam nickname
 

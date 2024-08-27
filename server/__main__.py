@@ -25,17 +25,22 @@ from .supported_games import SUPPORTED_GAMES
 from .toasts import set_toast, handle_toasts
 
 
-if os.getenv("HOST_URL", None) is None:
-    print("You must define the environment variable HOST_URL")
-    exit(-1)
-
-if not os.getenv("STEAM_SECRET", None):
-    print("You must define the environment variable STEAM_SECRET")
-    exit(-1)
+# verify required environment variables are set
+for ev in [
+    "HOST_URL",
+    "STEAM_SECRET",
+    "AWS_ACCESS_KEY_ID",
+    "AWS_SECRET_ACCESS_KEY",
+    "AWS_DEFAULT_REGION",
+]:
+    if os.getenv("HOST_URL", None) is None:
+        print(f"You must define the environment variable {ev}")
+        exit(-1)
 
 ENABLE_DEBUG: bool = (
     True if os.getenv("ENABLE_DEBUG", "false").lower() == "true" else False
 )
+
 
 # create cache for all requests
 requests_cache.install_cache("requests_cache")
@@ -60,6 +65,7 @@ beforeware = [
     Beforeware(handle_toasts),
 ]
 
+
 # load tailwind config and set headers
 if ENABLE_DEBUG:
     with open("tailwind.config.js") as fp:
@@ -78,11 +84,13 @@ hdrs = (
     )
 )
 
+
 # error handlers
 exception_handlers = {
     500: lambda req, exc: Error(req, exc),
     404: lambda req, exc: Error(req, exc),
 }
+
 
 # define app and routes
 app: FastHTML = FastHTML(
@@ -169,6 +177,5 @@ async def get(request, session):
 
 @rt("/feedback")
 async def post(request):
-    # @todo: finish this
-    print(request)
-    return FeedbackSubmitted()
+    form = await request.form()
+    return FeedbackSubmitted(form)
