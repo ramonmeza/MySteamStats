@@ -31,3 +31,22 @@ Steam authentication may not work when ran within a Docker container. This is be
 ```sh
 docker run -e HOST_URL="" -e STEAM_SECRET="" -p 8000:8000 mysteamstatsapp
 ```
+
+## Roadmap
+This is a changing list of things I need to do.
+
+- [ ] **Make forms functional**
+
+- [ ] About Page
+    - [ ] Make it pretty
+    - [ ] describe the platform and it's purpose
+    - [ ] talk about me a bit 👉👈
+
+- [ ] Contact Page (this could just be the feedback from? unsure yet)
+
+- [ ] "Market"
+    - [ ] Make social media accounts
+        - [ ] twitter
+        - [ ] tiktok
+    - [ ] bring up to friends and family
+    - [ ] hit up the discord servers
