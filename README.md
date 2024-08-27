@@ -37,6 +37,8 @@ This is a changing list of things I need to do.
 
 - [ ] **Make forms functional**
 
+- [ ] Utilize Steam API to personalize menu with Steam icon and Steam nickname
+
 - [ ] About Page
     - [ ] Make it pretty
     - [ ] describe the platform and it's purpose
