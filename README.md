@@ -4,7 +4,7 @@ Visualize your stats from your favorite games on Steam!
 
 ## Usage
 ### Live Demo
-Coming soon...
+https://www.MySteamStats.com/
 
 
 ## Developer
