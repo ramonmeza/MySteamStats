@@ -13,44 +13,7 @@ Coming soon...
 
 Request a game (create an issue)
 
-## Development
-### Roadmap
-- [x] Home Page
-    - [x] Make pretty
-    - [x] Highlight key reasons to use this app
-    - [x] Showcase features and functionality through videos/animation.
-    - [x] Show supported games list
-    - [x] Allow users to sign in
-    - [x] Allow users to request a game
-    - [x] Allow users to give feedback
-
-- [x] Sign-in Page
-    - [x] Make pretty
-    - [x] Allow users to sign in using their Steam account.
-    - [x] Display toast errors when login fails.
-
-- [x] Dashboard
-    - [x] Make pretty
-    - [x] Display supported games that user has in a list, where games are clickable
-
-- [x] Game Stats Page (per game)
-    - [x] Make pretty
-    - [x] Show game info
-    - [x] Show stats for selected game (from Steam WebAPI)
-    - [x] Search/filter stats using user input
-
-- [ ] Feedback Form
-    - [x] Make pretty
-    - [ ] Send email to me
-
-- [ ] Game Request Form
-    - [x] Make pretty
-    - [ ] Send email to me
-
-- [ ] Error Pages
-    - [x] Make pretty
-    - [ ] Email Support
-
+## Developer
 ### Environment Variables
 | Name | Description |
 | - | - |

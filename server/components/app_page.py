@@ -26,7 +26,7 @@ def AppPage(
             cls=(
                 f"{margin} bg-app-bg dark:bg-app-dark-bg text-app-text dark:text-app-dark-text"
                 + (
-                    f" bg-[url('{background}')] bg-fixed bg-cover bg-center"
+                    f" bg-[url('{background}')] bg-fixed bg-cover bg-[center_top_4rem]"
                     if background
                     else ""
                 )
