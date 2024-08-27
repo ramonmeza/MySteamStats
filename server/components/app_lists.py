@@ -37,7 +37,7 @@ def GameStatsListItem(stat_name: str, stat_value, fallback_name: str = "Unknown 
     return Div(
         H3(
             stat_name,
-            cls="text-base font-thin",
+            cls="text-base font-light",
         ),
         P(
             (f"{stat_value:,}" if str(stat_value).isdigit() else stat_value),

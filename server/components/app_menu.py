@@ -31,8 +31,9 @@ def AppMenu(player: dict, hidden: bool = False):
     return Div(
         Div(
             Div(
-                A(menu_icon, onclick="toggleMenu();"),
-                cls="grow-0",
+                menu_icon,
+                onclick="toggleMenu();",
+                cls="grow-0 cursor-pointer",
             ),
             Div(
                 H1("MySteamStats", cls="text-xl"),
@@ -42,7 +43,7 @@ def AppMenu(player: dict, hidden: bool = False):
                 Button(
                     I(cls="fa-regular fa-moon", id="AppDarkModeToggle"),
                     onclick="toggleDarkMode();",
-                    cls="h-8 w-8",
+                    cls="h-8 w-8 cursor-pointer",
                 ),
                 cls="grow-0",
             ),

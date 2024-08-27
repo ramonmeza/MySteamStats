@@ -12,6 +12,7 @@ from fasthtml.common import (
     Script,
     setup_toasts,
     StaticFiles,
+    Style,
 )
 
 
@@ -21,6 +22,7 @@ from .pages.error import Error
 from .pages.feedback_form import FeedbackForm, FeedbackSubmitted
 from .pages.game_stats import GameStats
 from .pages.home import Home
+from .pages.privacy_policy import PrivacyPolicy
 from .steamapi import SteamAPI
 from .supported_games import SUPPORTED_GAMES
 from .toasts import set_toast, handle_toasts
@@ -58,6 +60,7 @@ beforeware = [
             r".*\.js",
             "/",
             "/feedback",
+            "/privacy_policy",
             "/signin",
             r"/signin/.*",
             r"/auth/.*",
@@ -186,3 +189,9 @@ async def get(request, session):
 async def post(request):
     form = await request.form()
     return FeedbackSubmitted(form)
+
+
+@rt("/privacy_policy")
+async def get(request, session):
+    player = session.get("player", None)
+    return PrivacyPolicy(player)

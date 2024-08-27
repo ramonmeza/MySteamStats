@@ -19,7 +19,10 @@ def Home():
                     cls="italic",
                 ),
                 A(
-                    AppButton("Get Started"),
+                    Img(
+                        src="https://community.akamai.steamstatic.com/public/images/signinthroughsteam/sits_01.png",
+                        cls="animate-pulse shadow-md dark:shadow-none hover:shadow-xl dark:hover:shadow-none  transition-shadow",
+                    ),
                     href="/signin/steam",
                 ),
                 Script(
