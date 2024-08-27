@@ -1,6 +1,4 @@
 {
-	"black-formatter.cwd": "${workspaceFolder}",
-	"editor.defaultFormatter": "ms-python.black-formatter",
 	"editor.formatOnSave": true,
 	"files.exclude": {
 		"**/.git": true,
@@ -10,5 +8,10 @@
 		"**/.DS_Store": true,
 		"**/Thumbs.db": true,
 		"**/__pycache__": true,
+	},
+	"editor.defaultFormatter": "ms-python.black-formatter",
+	"black-formatter.cwd": "${workspaceFolder}",
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	}
 }

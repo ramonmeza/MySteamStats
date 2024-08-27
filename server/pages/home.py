@@ -23,6 +23,7 @@ def Home():
                 ),
                 Script(
                     code="""
+                    // this function will hide the menu until the scrollThreshold is hit
                     function updateMenu() {
                         const appMenu = document.getElementById("AppMenu");
                         const curScroll = document.documentElement.scrollTop || document.body.scrollTop;
