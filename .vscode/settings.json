@@ -12,6 +12,7 @@
 	"editor.defaultFormatter": "ms-python.black-formatter",
 	"black-formatter.cwd": "${workspaceFolder}",
 	"[javascript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	}
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+	},
+	"prettier.quoteProps": "as-needed"
 }

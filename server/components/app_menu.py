@@ -26,7 +26,7 @@ def AppMenu(steamid: int):
                 cls="grow-0 self-start",
             ),
             Div(
-                AppLink(H1("MySteamStats", cls="text-xl"), href="/"),
+                A(H1("MySteamStats", cls="text-xl"), href="/"),
                 cls="grow text-center",
             ),
             Div(
@@ -46,7 +46,7 @@ def AppMenu(steamid: int):
                     A(
                         Li(
                             link[0],
-                            cls="uppercase p-4 hover:bg-app-bg-hover dark:hover:bg-app-dark-bg-hover",
+                            cls="uppercase p-4 hover:bg-menu-item-hover dark:hover:bg-dark-menu-item-hover active:bg-menu-item-active dark:active:bg-dark-menu-item-active",
                         ),
                         href=link[1],
                     )
@@ -54,8 +54,8 @@ def AppMenu(steamid: int):
                 ]
             ),
             id="AppLinks",
-            cls="hidden w-full text-center bg-app-bg dark:bg-app-dark-bg",
+            cls="hidden w-full text-center bg-menu-item dark:bg-dark-menu-item",
         ),
         id="AppMenu",
-        cls="fixed z-50 top-0 left-0 h-16 w-full bg-app-bg dark:bg-app-dark-bg shadow",
+        cls="fixed z-50 top-0 left-0 h-16 w-full bg-primary shadow",
     )

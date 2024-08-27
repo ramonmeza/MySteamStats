@@ -8,27 +8,24 @@ const config = {
   ],
   theme: {
     extend: {
+      /* https://materialtheme.arcsine.dev/ */
       colors: {
-        "app-bg": "#ffffff",
-        "app-dark-bg": "#000000",
+        /* dark- prefix used for dark mode */
+        /* text colors */
+        dark: "#121212",
+        light: "#ededed",
 
-        "app-bg-hover": "#555555",
-        "app-dark-bg-hover": "#aaaaaa",
+        primary: "#b317d6",
+        "primary-hover": "#e8b9f3",
+        "primary-active": "#9a0dc6",
 
-        "app-accent": "#00A7E1",
-        "app-dark-accent": "#8300E0",
-
-        "app-accent-hover": "#8300E0",
-        "app-dark-accent-hover": "#00A7E1",
-
-        "app-text": "#000000",
-        "app-dark-text": "#ffffff",
-
-        "app-input": "#dadada",
-        "app-dark-input": "#222222",
-
-        "app-input-text": "#000000",
-        "app-dark-input-text": "#ffffff",
+        /* menu colors */
+        "menu-item": "#ffffff",
+        "dark-menu-item": "#1f1f1f",
+        "menu-item-hover": "#dbdbdb",
+        "dark-menu-item-hover": "#262626",
+        "menu-item-active": "#bdbdbd",
+        "dark-menu-item-active": "#303030",
       },
       textShadow: {
         sm: "0 1px 2px var(--tw-shadow-color)",

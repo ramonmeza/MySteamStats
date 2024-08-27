@@ -1,5 +1,6 @@
 from fasthtml.common import *
 
+from ..toasts import set_toast
 from ..steamapi import SteamAPI
 
 
@@ -16,7 +17,7 @@ def GameListItem(app_id: int):
     return A(
         Img(src=details["header_image"]),
         href=f"/stats/{app_id}",
-        cls="border-2 border-transparent hover:border-app-accent dark:hover:border-app-dark-accent",
+        cls="border-2 border-transparent hover:border-primary active:border-primary-active",
         data_searchterms=",".join([str(app_id), details["name"]]),
     )
 
@@ -37,11 +38,15 @@ def GameStatsListItem(stat_name: str, stat_value, fallback_name: str = "Unknown 
     return Div(
         H3(
             stat_name,
-            cls="text-lg font-semibold text-app-accent dark:text-app-dark-accent",
+            cls="text-base font-thin",
         ),
-        P(stat_value, cls="italic"),
+        P(
+            (f"{stat_value:,}" if str(stat_value).isdigit() else stat_value),
+            cls="italic text-primary text-4xl font-black",
+        ),
         data_searchterms=stat_name,
-        cls="overflow-scroll bg-app-bg dark:bg-app-dark-bg hover:bg-app-bg-hover dark:hover:bg-app-dark-bg-hover px-4 py-2",
+        # hover:bg-app-bg-hover dark:hover:bg-app-dark-bg-hover
+        cls="overflow-scroll bg-light dark:bg-dark px-4 py-2 text-center",
     )
 
 

@@ -2,6 +2,7 @@ from fasthtml.common import *
 
 from ..components.app_button import AppButton
 from ..components.app_page import AppPage
+from ..components.app_link import AppLink
 from ..components.app_lists import GameList
 from ..components.app_scroll_arrow import AppScrollArrow
 from ..supported_games import SUPPORTED_GAMES
@@ -12,10 +13,10 @@ def Home():
         AppScrollArrow(),
         Div(
             Div(
-                H1("MySteamStats", cls="text-4xl font-bold"),
+                H1("MySteamStats", cls="text-4xl font-bold text-primary"),
                 P(
                     "Your Games, Your Stats",
-                    cls="italic text-app-accent dark:text-app-dark-accent",
+                    cls="italic",
                 ),
                 A(
                     AppButton("Get Started"),
@@ -46,9 +47,7 @@ def Home():
                 Div(
                     H2(
                         "Game ",
-                        Span(
-                            "Dashboard", cls="text-app-accent dark:text-app-dark-accent"
-                        ),
+                        Span("Dashboard", cls="text-primary"),
                         cls="text-3xl font-black",
                     ),
                     P("Quickly access stats for any of your favorite Steam games!"),
@@ -57,7 +56,7 @@ def Home():
                 Div(
                     H2(
                         "All of ",
-                        Span("Your", cls="text-app-accent dark:text-app-dark-accent"),
+                        Span("Your", cls="text-primary"),
                         "Stats",
                         cls="text-3xl font-black",
                     ),
@@ -68,9 +67,7 @@ def Home():
                 ),
                 Div(
                     H2(
-                        Span(
-                            "Expanding", cls="text-app-accent dark:text-app-dark-accent"
-                        ),
+                        Span("Expanding", cls="text-primary"),
                         " Support",
                         cls="text-3xl font-black",
                     ),
@@ -82,15 +79,14 @@ def Home():
                 Div(
                     H2(
                         "Supported ",
-                        Span("Games", cls="text-app-accent dark:text-app-dark-accent"),
+                        Span("Games", cls="text-primary"),
                         cls="text-3xl font-black",
                     ),
                     P(
                         "Dont't see the game you love? ",
-                        A(
+                        AppLink(
                             "Request it!",
                             href="/feedback?reason=Game Request",
-                            cls="text-app-accent dark:text-app-dark-accent hover:text-app-accent-hover dark:hover:text-app-dark-accent-hover",
                         ),
                     ),
                     GameList(SUPPORTED_GAMES),

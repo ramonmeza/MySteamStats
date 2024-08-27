@@ -11,7 +11,7 @@ def AppScrollArrow():
             viewBox="0 0 1024 1024",
             version="1.1",
             xmlns="http://www.w3.org/2000/svg",
-            cls="animate-bounce w-6 h-6 mx-auto fill-app-accent dark:fill-app-dark-accent",
+            cls="animate-bounce w-6 h-6 mx-auto fill-primary",
             onclick="clickScrollArrow();",
         ),
         Script(src="/public/js/components/scrollArrow.js"),

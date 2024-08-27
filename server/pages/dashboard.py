@@ -20,7 +20,7 @@ def Dashboard(steam_api_key: str, steam_id: int):
         Div(
             H2(
                 "Dashboard",
-                cls="mb-8 text-4xl text-app-accent dark:text-app-dark-accent font-black text-center",
+                cls="mb-8 text-4xl font-black text-center",
             ),
             AppSearchInput(
                 "Search for a game...",

@@ -6,6 +6,6 @@ def AppButton(*content, type: str = "button"):
         Button(
             *content,
             type=type,
-            cls="w-max px-4 py-2 mx-4 my-2 rounded text-app-text bg-app-accent hover:bg-app-accent-hover duration-300 animate-pulse hover:animate-none",
+            cls="text-light bg-primary hover:bg-primary-hover active:bg-primary-active w-max px-4 py-2 mx-4 my-2 rounded duration-300 animate-pulse hover:animate-none",
         ),
     )

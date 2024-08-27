@@ -12,19 +12,19 @@ function loadDarkModeIcon() {
   ) {
     document.documentElement.classList.add("dark");
 
-    toggleIconElem.classList.add("fa-regular");
-    toggleIconElem.classList.add("fa-moon");
-
-    toggleIconElem.classList.remove("fa-solid");
-    toggleIconElem.classList.remove("fa-sun");
-  } else {
-    document.documentElement.classList.remove("dark");
-
     toggleIconElem.classList.remove("fa-regular");
     toggleIconElem.classList.remove("fa-moon");
 
     toggleIconElem.classList.add("fa-solid");
     toggleIconElem.classList.add("fa-sun");
+  } else {
+    document.documentElement.classList.remove("dark");
+
+    toggleIconElem.classList.add("fa-regular");
+    toggleIconElem.classList.add("fa-moon");
+
+    toggleIconElem.classList.remove("fa-solid");
+    toggleIconElem.classList.remove("fa-sun");
   }
 }
 

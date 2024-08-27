@@ -8,9 +8,7 @@ def Error(request, exception):
     # @todo: pass request to feedback form
     return AppPage(
         Div(
-            I(
-                cls="fa-solid fa-face-frown h-32 w-32 text-app-accent dark:text-app-dark-accent"
-            ),
+            I(cls="fa-solid fa-face-frown h-32 w-32 text-primary"),
             H1(str(exception), cls="text-3xl"),
             P(
                 "We're sorry you've encountered an error. Feel free to ",

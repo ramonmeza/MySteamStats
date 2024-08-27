@@ -15,18 +15,32 @@ def GameStats(steam_api_key: str, steam_id: int, app_id: int):
     )
     schema: dict = SteamAPI.ISteamUserStats.GetSchemaForGame(steam_api_key, app_id)
 
-    return AppPage(
-        Div(
-            H2(
-                details["name"],
-                cls="text-4xl text-app-accent dark:text-app-dark-accent font-black text-center",
+    if not stats:
+        return AppPage(
+            Div(
+                H2(
+                    details["name"],
+                    cls="text-4xl font-black mb-8",
+                ),
+                P("You do not own this game, so no information is displayed."),
+                cls="container mx-auto px-4 text-center",
             ),
-            # @todo: add search input and search list for stats
-            AppSearchInput("Search for a stat...", P("No stats found")),
-            GameStatsList(stats, schema),
-            cls="container mx-auto px-4",
-        ),
-        Script(src="/public/js/components/filterList.js"),
-        background=details["background"],
-        steamid=steam_id,
-    )
+            Script(src="/public/js/components/filterList.js"),
+            background=details["background"],
+            steamid=steam_id,
+        )
+    else:
+        return AppPage(
+            Div(
+                H2(
+                    details["name"],
+                    cls="text-4xl font-black text-center",
+                ),
+                AppSearchInput("Search for a stat...", P("No stats found")),
+                GameStatsList(stats, schema),
+                cls="container mx-auto px-4",
+            ),
+            Script(src="/public/js/components/filterList.js"),
+            background=details["background"],
+            steamid=steam_id,
+        )

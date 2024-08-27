@@ -16,7 +16,7 @@ def FeedbackForm(reason: str = "", steamid=None):
         Div(
             H2(
                 "Feedback Form",
-                cls="mb-8 text-4xl text-app-accent dark:text-app-dark-accent font-black text-center",
+                cls="mb-8 text-4xl font-black text-center",
             ),
             P(
                 "Please note: the form is not yet functional.",

@@ -24,7 +24,7 @@ def AppPage(
                 src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"
             ),
             cls=(
-                f"{margin} bg-app-bg dark:bg-app-dark-bg text-app-text dark:text-app-dark-text"
+                f"{margin} cursor-default bg-light dark:bg-dark text-dark dark:text-light"
                 + (
                     f" bg-[url('{background}')] bg-fixed bg-cover bg-[center_top_4rem]"
                     if background

@@ -21,6 +21,7 @@ from .pages.error import Error
 from .pages.feedback_form import FeedbackForm, FeedbackSubmitted
 from .pages.game_stats import GameStats
 from .pages.home import Home
+from .supported_games import SUPPORTED_GAMES
 from .toasts import set_toast, handle_toasts
 
 
@@ -143,6 +144,15 @@ async def get(session):
 @rt("/stats/{app_id:path}")
 async def get(app_id: int, session):
     steam_id = session.get("auth")
+
+    if app_id not in [game["appid"] for game in SUPPORTED_GAMES]:
+        set_toast(
+            session,
+            "warning",
+            "This game is not officially supported and my display incorrectly. If you'd like, you can request official support for it.",
+        )
+        handle_toasts(session)
+
     return GameStats(os.getenv("STEAM_SECRET"), steam_id, app_id)
 
 
