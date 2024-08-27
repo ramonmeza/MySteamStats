@@ -6,12 +6,6 @@ Visualize your stats from your favorite games on Steam!
 ### Live Demo
 Coming soon...
 
-### Supported Games
-| Game Name | Steam ID |
-| - | - |
-| Counter-Strike 2 | 730 |
-
-Request a game (create an issue)
 
 ## Developer
 ### Environment Variables
