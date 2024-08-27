@@ -8,7 +8,7 @@ from .toasts import set_toast
 
 def user_auth_before(request: Request, session):
     # authentication method, which allows access based on whether the auth parameter is set in the session
-    auth = request.scope["auth"] = session.get("auth", None)
+    auth = request.scope["player"] = session.get("player", None)
 
     if not auth:
         set_toast(session, "error", "You must sign in!")

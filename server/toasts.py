@@ -2,6 +2,10 @@ from fasthtml.common import add_toast
 from typing import Literal
 
 
+# this may look crazy, but i needed to wrap toast functions
+# to account for redirects within the app itself.
+# if i create a toast then redirected, the toast didnt popup,
+# so i store it in the session and check on it when after a reroute
 def set_toast(
     session,
     type: Literal[

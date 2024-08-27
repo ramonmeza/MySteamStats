@@ -1,14 +1,13 @@
 from fasthtml.common import *
 
-from ..toasts import set_toast
 from ..steamapi import SteamAPI
 
 
-def GameListItem(app_id: int):
-    details: dict = SteamAPI.get_app_details(app_id)[str(app_id)]
+def GameListItem(appid: int):
+    details: dict = SteamAPI.get_app_details(appid)[str(appid)]
 
     if not bool(details["success"]):
-        err = f"Failed to get details for owned game with appid {app_id}"
+        err = f"Failed to get details for owned game with appid {appid}"
         print(err)
         return Script(code=f'console.warn("{err}");')
 
@@ -16,9 +15,9 @@ def GameListItem(app_id: int):
 
     return A(
         Img(src=details["header_image"]),
-        href=f"/stats/{app_id}",
+        href=f"/stats/{appid}",
         cls="border-2 border-transparent hover:border-primary active:border-primary-active",
-        data_searchterms=",".join([str(app_id), details["name"]]),
+        data_searchterms=",".join([str(appid), details["name"]]),
     )
 
 

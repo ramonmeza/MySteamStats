@@ -24,7 +24,7 @@ def FeedbackSubmitted(form):
         )
 
 
-def FeedbackForm(reason: str = "", steamid=None):
+def FeedbackForm(reason: str = "", player=None):
     return AppPage(
         Div(
             H2(
@@ -71,5 +71,5 @@ function validateForm(event) {
 }
                """
         ),
-        steamid=steamid,
+        player=player,
     )

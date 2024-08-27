@@ -8,10 +8,12 @@ from ..steamapi import SteamAPI
 from ..supported_games import SUPPORTED_GAMES
 
 
-def Dashboard(steam_api_key: str, steam_id: int):
+def Dashboard(steam_api_key: str, player: dict):
+    steamid: int = int(player["steamid"])
+
     owned_games: dict = SteamAPI.IPlayerService.GetOwnedGames(
         key=steam_api_key,
-        steamid=steam_id,
+        steamid=steamid,
         include_free_sub=True,
         appids_filter=[game["appid"] for game in SUPPORTED_GAMES],
     )["response"]["games"]
@@ -38,5 +40,5 @@ def Dashboard(steam_api_key: str, steam_id: int):
             cls="container mx-auto px-4",
         ),
         Script(src="/public/js/components/filterList.js"),
-        steamid=steam_id,
+        player=player,
     )

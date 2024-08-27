@@ -40,7 +40,13 @@ This is a changing list of things I need to do.
 
 - [x] Make forms functional
 
-- [ ] Utilize Steam API to personalize menu with Steam icon and Steam nickname
+- [x] Utilize Steam API to personalize menu with Steam icon and Steam nickname
+
+- [ ] Regex search filter
+
+- [ ] Game Stats
+    - [ ] Proper display names
+    - [ ] custom stat display for supported game (cs2, carmechanic, carx)
 
 - [ ] About Page
     - [ ] Make it pretty

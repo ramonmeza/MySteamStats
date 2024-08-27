@@ -1,7 +1,7 @@
-from fasthtml.common import A, Button, Div, H1, I, Li, Script, Title, Ul
+from fasthtml.common import *
 
 
-def AppMenu(steamid: int, hidden: bool = False):
+def AppMenu(player: dict, hidden: bool = False):
     endpoints = (
         [
             ("Dashboard", "/dashboard"),
@@ -9,34 +9,45 @@ def AppMenu(steamid: int, hidden: bool = False):
             ("Report Issue", "/feedback?reason=Report Issue"),
             ("Sign Out", "/signout"),
         ]
-        if steamid
+        if player
         else [("Home", "/"), ("Sign In", "/signin/steam")]
+    )
+
+    menu_icon = (
+        Div(
+            Img(
+                src=player["avatarfull"],
+                cls="w-8 my-auto inline rounded-full border-2 border-green-400",
+            ),
+            Span(
+                player["personaname"],
+                cls="text-lg font-semibold mx-2",
+            ),
+        )
+        if player
+        else I(Title("Menu"), cls="fa-solid fa-bars")
     )
 
     return Div(
         Div(
             Div(
-                Button(
-                    I(Title("Menu"), cls="fa-solid fa-bars"),
-                    onclick="toggleMenu();",
-                    cls="h-6 w-6",
-                ),
-                cls="grow-0 self-start",
+                A(menu_icon, onclick="toggleMenu();"),
+                cls="grow-0",
             ),
             Div(
-                A(H1("MySteamStats", cls="text-xl"), href="/"),
+                H1("MySteamStats", cls="text-xl"),
                 cls="grow text-center",
             ),
             Div(
                 Button(
                     I(cls="fa-regular fa-moon", id="AppDarkModeToggle"),
                     onclick="toggleDarkMode();",
-                    cls="h-6 w-6",
+                    cls="h-8 w-8",
                 ),
-                cls="grow-0 self-end",
+                cls="grow-0",
             ),
             Script(src="/public/js/components/appMenu.js"),
-            cls="flex flex-row items-center p-4",
+            cls="flex flex-row items-stretch p-4 h-full",
         ),
         Div(
             Ul(

@@ -21,6 +21,7 @@ from .pages.error import Error
 from .pages.feedback_form import FeedbackForm, FeedbackSubmitted
 from .pages.game_stats import GameStats
 from .pages.home import Home
+from .steamapi import SteamAPI
 from .supported_games import SUPPORTED_GAMES
 from .toasts import set_toast, handle_toasts
 
@@ -107,7 +108,7 @@ setup_toasts(app)
 @rt("/")
 async def get(session):
     # signed in users goto dashboard
-    if session.get("auth", None) is not None:
+    if session.get("player", None) is not None:
         return RedirectResponse("/dashboard", status_code=303)
 
     # if not signed in, goto home page
@@ -124,7 +125,7 @@ async def get():
 @rt("/signout")
 async def get(session):
     # reset the session auth key to None, effectively closing the active session
-    session["auth"] = None
+    session["player"] = None
     set_toast(session, "success", "You've successfully signed out")
     return RedirectResponse("/", status_code=303)
 
@@ -133,27 +134,34 @@ async def get(session):
 async def get(request: Request, session):
     # this is the callback url that steam redirects to after authentication.
     # here we need to validate the response and get the user's steam ID, which we save into the session
-    session["auth"] = SteamAuth.validate_authorization(request)
+    try:
+        steamid = SteamAuth.validate_authorization(request)
+        session["player"] = SteamAPI.ISteamUser.GetPlayerSummaries(
+            os.getenv("STEAM_SECRET"), [steamid]
+        )["response"]["players"][0]
 
-    if session.get("auth", None) is None:
-        set_toast(session, "error", "You've failed to sign in!")
-        return RedirectResponse("/", status_code=303)
-    else:
+        # this will throw if "player" doesnt exist
+        assert session.get("player", None) is not None
+
         set_toast(session, "success", "You've successfully signed in")
         return RedirectResponse("/dashboard", status_code=303)
+    except:
+        session["player"] = None
+        set_toast(session, "error", "You've failed to sign in!")
+        return RedirectResponse("/", status_code=303)
 
 
 @rt("/dashboard")
 async def get(session):
-    steam_id = session.get("auth")
-    return Dashboard(steam_api_key=os.getenv("STEAM_SECRET"), steam_id=steam_id)
+    player = session.get("player")
+    return Dashboard(os.getenv("STEAM_SECRET"), player)
 
 
-@rt("/stats/{app_id:path}")
-async def get(app_id: int, session):
-    steam_id = session.get("auth")
+@rt("/stats/{appid:path}")
+async def get(appid: int, session):
+    player = session.get("player")
 
-    if app_id not in [game["appid"] for game in SUPPORTED_GAMES]:
+    if appid not in [game["appid"] for game in SUPPORTED_GAMES]:
         set_toast(
             session,
             "warning",
@@ -161,14 +169,13 @@ async def get(app_id: int, session):
         )
         handle_toasts(session)
 
-    return GameStats(os.getenv("STEAM_SECRET"), steam_id, app_id)
+    return GameStats(os.getenv("STEAM_SECRET"), player, appid)
 
 
 @rt("/feedback")
 async def get(request, session):
-
     return FeedbackForm(
-        steamid=session.get("auth", None),
+        player=session.get("player", None),
         reason=(
             request.query_params["reason"] if "reason" in request.query_params else None
         ),

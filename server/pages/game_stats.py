@@ -8,12 +8,13 @@ from ..components.app_lists import GameStatsList
 from ..steamapi import SteamAPI
 
 
-def GameStats(steam_api_key: str, steam_id: int, app_id: int):
-    details: dict = SteamAPI.get_app_details(app_id)[str(app_id)]["data"]
+def GameStats(steam_api_key: str, player: dict, appid: int):
+    steamid: int = int(player["steamid"])
+    details: dict = SteamAPI.get_app_details(appid)[str(appid)]["data"]
     stats: dict = SteamAPI.ISteamUserStats.GetUserStatsForGame(
-        steam_api_key, steam_id, app_id
+        steam_api_key, steamid, appid
     )
-    schema: dict = SteamAPI.ISteamUserStats.GetSchemaForGame(steam_api_key, app_id)
+    schema: dict = SteamAPI.ISteamUserStats.GetSchemaForGame(steam_api_key, appid)
 
     if not stats:
         return AppPage(
@@ -27,7 +28,7 @@ def GameStats(steam_api_key: str, steam_id: int, app_id: int):
             ),
             Script(src="/public/js/components/filterList.js"),
             background=details["background"],
-            steamid=steam_id,
+            player=player,
         )
     else:
         return AppPage(
@@ -42,5 +43,5 @@ def GameStats(steam_api_key: str, steam_id: int, app_id: int):
             ),
             Script(src="/public/js/components/filterList.js"),
             background=details["background"],
-            steamid=steam_id,
+            player=player,
         )

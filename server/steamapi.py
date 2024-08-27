@@ -28,9 +28,9 @@ class SteamAPI:
         )
 
     @staticmethod
-    def get_app_details(app_id: int) -> dict:
+    def get_app_details(appid: int) -> dict:
         resp = requests.get(
-            f"https://store.steampowered.com/api/appdetails?appids={app_id}"
+            f"https://store.steampowered.com/api/appdetails?appids={appid}"
         )
         return resp.json()
 

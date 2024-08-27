@@ -5,17 +5,17 @@ from .app_menu import AppMenu
 
 def AppPage(
     *content,
-    steamid: int = None,
+    player: dict = None,
     app_name: str = "MySteamStats",
     title: str = "Your Games, Your Stats",
     background: str = None,
-    margin: str = "mt-20 mb-12",
+    margin: str = "mt-24 mb-12",
     menu_starts_hidden: bool = False
 ):
     return (
         Title(f"{app_name}: {title}"),
         Body(
-            AppMenu(steamid=steamid, hidden=menu_starts_hidden),
+            AppMenu(player=player, hidden=menu_starts_hidden),
             *content,
             Link(
                 rel="stylesheet",
