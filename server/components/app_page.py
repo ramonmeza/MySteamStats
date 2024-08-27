@@ -10,11 +10,12 @@ def AppPage(
     title: str = "Your Games, Your Stats",
     background: str = None,
     margin: str = "mt-20 mb-12",
+    menu_starts_hidden: bool = False
 ):
     return (
         Title(f"{app_name}: {title}"),
         Body(
-            AppMenu(steamid=steamid),
+            AppMenu(steamid=steamid, hidden=menu_starts_hidden),
             *content,
             Link(
                 rel="stylesheet",

@@ -1,9 +1,7 @@
 from fasthtml.common import A, Button, Div, H1, I, Li, Script, Title, Ul
 
-from ..components.app_link import AppLink
 
-
-def AppMenu(steamid: int):
+def AppMenu(steamid: int, hidden: bool = False):
     endpoints = (
         [
             ("Dashboard", "/dashboard"),
@@ -57,5 +55,5 @@ def AppMenu(steamid: int):
             cls="hidden w-full text-center bg-menu-item dark:bg-dark-menu-item",
         ),
         id="AppMenu",
-        cls="fixed z-50 top-0 left-0 h-16 w-full bg-primary shadow",
+        cls=f"fixed z-50 top-0 left-0 h-16 w-full bg-primary shadow {'hidden' if hidden else ''}",
     )

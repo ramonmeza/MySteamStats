@@ -31,7 +31,9 @@ def Home():
                         const scrollThreshold = 150.0;
 
                         if (curScroll < scrollThreshold) {
-                            appMenu.classList.add("hidden");
+                            if(!appMenu.classList.contains("hidden")) {
+                                appMenu.classList.add("hidden");
+                            }
                         } else {
                             appMenu.classList.remove("hidden");
                         }
@@ -97,4 +99,5 @@ def Home():
             cls="container mx-auto px-4",
         ),
         margin="mt-0 mb-12",
+        menu_starts_hidden=True,
     )
