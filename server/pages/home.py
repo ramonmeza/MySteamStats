@@ -54,7 +54,7 @@ def Home(session):
                     H2(
                         "Game ",
                         Span("Dashboard", cls="text-primary"),
-                        cls="text-3xl font-black",
+                        cls="text-3xl font-black drop-shadow-md",
                     ),
                     P("Quickly access stats for any of your favorite Steam games!"),
                     cls="space-y-4",
@@ -64,7 +64,7 @@ def Home(session):
                         "All of ",
                         Span("Your", cls="text-primary"),
                         "Stats",
-                        cls="text-3xl font-black",
+                        cls="text-3xl font-black drop-shadow-md",
                     ),
                     P(
                         "Each game is packed with statistics that reflect your time playing the game!"
@@ -75,7 +75,7 @@ def Home(session):
                     H2(
                         Span("Expanding", cls="text-primary"),
                         " Support",
-                        cls="text-3xl font-black",
+                        cls="text-3xl font-black drop-shadow-md",
                     ),
                     P(
                         "Custom supported games showcase your stats in unique, themed ways!"
@@ -86,7 +86,7 @@ def Home(session):
                     H2(
                         "Supported ",
                         Span("Games", cls="text-primary"),
-                        cls="text-3xl font-black",
+                        cls="text-3xl font-black drop-shadow-md",
                     ),
                     P(
                         "Dont't see the game you love? ",

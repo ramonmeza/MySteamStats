@@ -9,8 +9,9 @@ from .toasts import set_toast
 def user_auth_before(request: Request, session):
     # authentication method, which allows access based on whether the auth parameter is set in the session
     auth = request.scope["player"] = session.get("player", None)
+    isAdmin = request.scope["isAdmin"] = session.get("isAdmin", None)
 
-    if not auth:
+    if not auth and not isAdmin:
         set_toast(session, "error", "You must sign in!")
         return RedirectResponse(
             "/",

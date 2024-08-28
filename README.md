@@ -48,8 +48,9 @@ This is a changing list of things I need to do.
 
 - [ ] Admin page
     - [x] admin login
-    - [ ] show feedback
-    - [ ] sort by reason
+    - [x] show feedback
+    - [x] sort by reason (filter works)
+    - [ ] delete feedback
 
 - [ ] Game Stats
     - [ ] Proper display names

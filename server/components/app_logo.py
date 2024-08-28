@@ -3,7 +3,9 @@ from fasthtml.svg import G, Rect, Svg, Text, Tspan
 from typing import Literal
 
 
-def AppLogo(cls=None, auto_switch: bool = False):
+def AppLogo(
+    cls=None, auto_switch: bool = False, fill: str = "fill-dark dark:fill-light"
+):
 
     icon_cls = "w-full h-full block md:hidden" if auto_switch else "hidden"
     logo_cls = "w-full h-full hidden md:block" if auto_switch else "w-full h-full"
@@ -25,7 +27,7 @@ def AppLogo(cls=None, auto_switch: bool = False):
                         cls="fill-primary",
                         style="font-weight: 600; font-size: 50.3px; word-spacing: 0px;",
                     ),
-                    cls="fill-dark dark:fill-light",
+                    cls=fill,
                     style="font-family: Coolvetica; font-size: 51px; white-space: pre; opacity: 1; transform-origin: -0.199419px -2.54803px;",
                     y="-0.63",
                     transform="matrix(0.994781, 0, 0, 0.992557, 0.199419, 2.548036)",

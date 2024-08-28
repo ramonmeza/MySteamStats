@@ -2,10 +2,11 @@ import boto3
 import uuid
 
 
-def store_feedback(reason: str, description: str) -> str:
-    dynamodb = boto3.resource("dynamodb")
-    table = dynamodb.Table("MySteamStats-Feedback")
+dynamodb = boto3.resource("dynamodb")
+table = dynamodb.Table("MySteamStats-Feedback")
 
+
+def store_feedback(reason: str, description: str) -> str:
     id = str(uuid.uuid4())
 
     table.put_item(
@@ -18,5 +19,7 @@ def store_feedback(reason: str, description: str) -> str:
     return id
 
 
-def get_feedback():
-    return "feedback from database"
+def get_all_feedback():
+    response = table.scan()
+    items = response.get("Items", [])
+    return items

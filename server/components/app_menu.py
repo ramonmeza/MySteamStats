@@ -50,16 +50,16 @@ def AppMenu(session, hidden: bool = False):
             Div(
                 menu_icon,
                 onclick="toggleMenu();",
-                cls="cursor-pointer justify-self-start",
+                cls="cursor-pointer justify-self-start text-light ",
             ),
-            AppLogo(cls="h-8 justify-self-center", auto_switch=True),
+            AppLogo(cls="h-8 justify-self-center", auto_switch=True, fill="fill-light"),
             Div(
                 Button(
                     I(cls="fa-regular fa-moon", id="AppDarkModeToggle"),
                     onclick="toggleDarkMode();",
                     cls="h-8 w-8 cursor-pointer",
                 ),
-                cls="justify-self-end",
+                cls="justify-self-end text-light",
             ),
             Script(src="/public/js/components/appMenu.js"),
             cls="grid grid-cols-3 items-center p-4 h-full",

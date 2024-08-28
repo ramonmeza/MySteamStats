@@ -39,7 +39,7 @@ def GameStats(session, steam_api_key: str, appid: int):
             Div(
                 H2(
                     details["name"],
-                    cls="text-4xl font-black text-center",
+                    cls="text-4xl font-black text-center text-semibold drop-shadow-md",
                 ),
                 AppSearchInput("Search for a stat...", P("No stats found")),
                 GameStatsList(stats, schema),

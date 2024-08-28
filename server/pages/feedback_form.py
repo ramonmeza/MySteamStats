@@ -18,7 +18,7 @@ def FeedbackSubmitted(form):
         return Div(
             P(
                 "An error occurred and your feedback may not have submitted.",
-                cls="text-red-500 italic font-semibold",
+                cls="text-error italic font-semibold",
             ),
             A(AppButton("Go Home"), href="/"),
         )

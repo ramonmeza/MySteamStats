@@ -42,7 +42,7 @@ def AppPage(
                     ),
                 ),
                 Div(AppLink("Privacy Policy", href="/privacy_policy"), cls="py-2"),
-                cls="mt-auto pt-16 h-full text-mid text-center text-xs leading-4",
+                cls="mt-auto pt-16 h-full text-mid-hover text-center text-xs leading-4",
             ),
             Link(
                 rel="stylesheet",
