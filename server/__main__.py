@@ -15,8 +15,9 @@ from fasthtml.common import (
 )
 
 
-from .authentication import user_auth_before, SteamAuth
+from .authentication import authenticate_admin, SteamAuth, user_auth_before
 from .pages.admin_login import AdminLogin
+from .pages.admin_panel import AdminPanel
 from .pages.dashboard import Dashboard
 from .pages.error import Error
 from .pages.feedback_form import FeedbackForm, FeedbackSubmitted
@@ -35,6 +36,8 @@ for ev in [
     "AWS_ACCESS_KEY_ID",
     "AWS_SECRET_ACCESS_KEY",
     "AWS_DEFAULT_REGION",
+    "ADMIN_EMAIL",
+    "ADMIN_PASSWORD",
 ]:
     if os.getenv("HOST_URL", None) is None:
         print(f"You must define the environment variable {ev}")
@@ -67,6 +70,7 @@ beforeware = [
         ],
     ),
     Beforeware(handle_toasts),
+    Beforeware(authenticate_admin, skip=[r"^(?!/admin(/.*)?$).*$"]),
 ]
 
 
@@ -133,7 +137,7 @@ async def get(session):
 @rt("/signout")
 async def get(session):
     # reset the session auth key to None, effectively closing the active session
-    session["player"] = None
+    session.clear()
     set_toast(session, "success", "You've successfully signed out")
     return RedirectResponse("/", status_code=303)
 
@@ -163,11 +167,24 @@ async def get(request: Request, session):
 async def post(request: Request, session):
     try:
         form = await request.form()
-        set_toast(session, "success", "You've signed in as Admin!")
-        return RedirectResponse("/", status_code=303)
+        if form["email"] == os.getenv("ADMIN_EMAIL") and form["password"] == os.getenv(
+            "ADMIN_PASSWORD"
+        ):
+            session["isAdmin"] = True
+            set_toast(session, "success", "You've signed in as Admin!")
+            return RedirectResponse("/admin/panel", status_code=303)
+        else:
+            raise Exception
     except Exception as e:
+        session["isAdmin"] = None
         set_toast(session, "error", "You've failed to sign in!")
         return RedirectResponse("/", status_code=303)
+
+
+@rt("/admin/panel")
+async def get(request: Request, session):
+    player = session.get("player", None)
+    return AdminPanel(player=player)
 
 
 @rt("/dashboard")

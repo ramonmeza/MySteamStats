@@ -16,3 +16,7 @@ def store_feedback(reason: str, description: str) -> str:
         }
     )
     return id
+
+
+def get_feedback():
+    return "feedback from database"

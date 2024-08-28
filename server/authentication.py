@@ -18,6 +18,17 @@ def user_auth_before(request: Request, session):
         )
 
 
+def authenticate_admin(request: Request, session):
+    isAdmin = request.scope["isAdmin"] = session.get("isAdmin", None)
+
+    if not isAdmin:
+        set_toast(session, "error", "You do not have access to this page!")
+        return RedirectResponse(
+            "/",
+            status_code=303,
+        )
+
+
 class SteamAuth:
     PROVIDER: str = "https://steamcommunity.com/openid/login"
 

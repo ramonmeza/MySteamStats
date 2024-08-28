@@ -16,6 +16,8 @@ https://www.MySteamStats.com/
 | `STEAM_SECRET` | Steam API key, available [here](https://steamcommunity.com/dev/apikey) |
 | `AWS_ACCESS_KEY_ID` | The access key for your AWS account. |
 | `AWS_SECRET_ACCESS_KEY` | The secret key for your AWS account.  |
+| `ADMIN_EMAIL` | Email used to access admin panel. |
+| `ADMIN_PASSWORD` | Password associated with the Admin account. |
 
 
 ### CI
@@ -32,7 +34,7 @@ docker build . --tag mysteamstatsapp
 Steam authentication may not work when ran within a Docker container. This is because the callback url (HOST_URL) isn't an address that Steam can verify, or something.
 
 ```sh
-docker run -e HOST_URL="" -e STEAM_SECRET="" -e AWS_ACCESS_KEY_ID="" -e AWS_SECRET_ACCESS_KEY="" -p 8000:8000 mysteamstatsapp
+docker run -e HOST_URL="" -e STEAM_SECRET="" -e AWS_ACCESS_KEY_ID="" -e AWS_SECRET_ACCESS_KEY="" -e ADMIN_EMAIL="" -e ADMIN_PASSWORD="" -p 8000:8000 mysteamstatsapp
 ```
 
 ## Roadmap
