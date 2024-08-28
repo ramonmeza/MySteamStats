@@ -53,7 +53,6 @@ def FeedbackForm(reason: str = "", player=None):
                 hx_post="/feedback",
                 hx_target="#feedbackForm",
                 hx_indicator="#loadingIcon",
-                onsubmit="""validateForm(event);""",
                 id="feedbackForm",
             ),
             Div(
@@ -63,13 +62,6 @@ def FeedbackForm(reason: str = "", player=None):
             ),
             cls="container mx-auto text-center",
         ),
-        Script(
-            code="""
-function validateForm(event) {
-    // event.target.reason.value = sanitize(event.target.reason.value);
-    // event.target.description.value = sanitize(event.target.description.value);
-}
-               """
-        ),
         player=player,
+        title="Feedback Form",
     )

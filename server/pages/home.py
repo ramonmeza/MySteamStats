@@ -13,7 +13,7 @@ def Home():
         AppScrollArrow(),
         Div(
             Div(
-                AppLogo(),
+                AppLogo(cls="w-4/5"),
                 P(
                     "Your Games, Your Stats",
                     cls="italic font-light",

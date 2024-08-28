@@ -37,7 +37,7 @@ def AppMenu(player: dict, hidden: bool = False):
                 onclick="toggleMenu();",
                 cls="cursor-pointer justify-self-start",
             ),
-            AppLogo(cls="h-8 justify-self-center"),
+            AppLogo(cls="h-8 justify-self-center", auto_switch=True),
             Div(
                 Button(
                     I(cls="fa-regular fa-moon", id="AppDarkModeToggle"),

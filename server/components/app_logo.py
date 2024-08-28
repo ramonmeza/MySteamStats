@@ -1,85 +1,91 @@
+from fasthtml.common import Div
 from fasthtml.svg import G, Rect, Svg, Text, Tspan
+from typing import Literal
 
 
-def AppLogo(cls=None, small: bool = False):
-    if small:
-        return (
-            Svg(
-                G(
-                    Rect(
-                        x="121.987",
-                        y="240.517",
-                        width="10",
-                        height="19.864",
-                        cls="fill-primary-hover",
+def AppLogo(cls=None, auto_switch: bool = False):
+
+    icon_cls = "w-full h-full block md:hidden" if auto_switch else "hidden"
+    logo_cls = "w-full h-full hidden md:block" if auto_switch else "w-full h-full"
+
+    return Div(
+        Svg(
+            G(
+                Text(
+                    Tspan(
+                        "MySteam",
+                        x="160.64",
+                        y="259.691",
+                        style="font-size: 50.3px; word-spacing: 0px;",
                     ),
-                    Rect(
-                        x="133.87",
-                        y="227.384",
-                        width="10",
-                        height="33",
+                    Tspan(
+                        "Stats",
+                        x="344",
+                        y="259.691",
                         cls="fill-primary",
+                        style="font-weight: 600; font-size: 50.3px; word-spacing: 0px;",
                     ),
-                    Rect(
-                        x="145.827",
-                        y="233.425",
-                        width="10",
-                        height="26.959",
-                        cls="fill-primary-hover",
-                    ),
-                    transform="matrix(1, 0, 0, 1, -47.76963424682617, -20.056758880615234)",
+                    cls="fill-dark dark:fill-light",
+                    style="font-family: Coolvetica; font-size: 51px; white-space: pre; opacity: 1; transform-origin: -0.199419px -2.54803px;",
+                    y="-0.63",
+                    transform="matrix(0.994781, 0, 0, 0.992557, 0.199419, 2.548036)",
                 ),
-                viewBox="74.2174 207.3272 33.84 33",
-                xmlns="http://www.w3.org/2000/svg",
-            ),
-        )
-
-    return Svg(
-        G(
-            Text(
-                Tspan(
-                    "MySteam",
-                    x="160.64",
-                    y="259.691",
-                    style="font-size: 50.3px; word-spacing: 0px;",
+                Rect(
+                    x="121.987",
+                    y="240.328",
+                    width="10",
+                    height="19.864",
+                    cls="fill-primary-hover",
                 ),
-                Tspan(
-                    "Stats",
-                    x="344",
-                    y="259.691",
+                Rect(
+                    x="133.87",
+                    y="227.384",
+                    width="10",
+                    height="33",
                     cls="fill-primary",
-                    style="font-weight: 600; font-size: 50.3px; word-spacing: 0px;",
                 ),
-                cls="fill-dark dark:fill-light",
-                style="font-family: Coolvetica; font-size: 51px; white-space: pre; opacity: 1; transform-origin: -0.199419px -2.54803px;",
-                y="-0.63",
-                transform="matrix(0.994781, 0, 0, 0.992557, 0.199419, 2.548036)",
+                Rect(
+                    x="145.827",
+                    y="233.425",
+                    width="10",
+                    height="26.959",
+                    cls="fill-primary-hover",
+                ),
+                # transform="matrix(1, 0, 0, 1, -23.73033332824707, 0.15976101160049438)",
             ),
-            Rect(
-                x="121.987",
-                y="240.328",
-                width="10",
-                height="19.864",
-                cls="fill-primary-hover",
-            ),
-            Rect(
-                x="133.87",
-                y="227.384",
-                width="10",
-                height="33",
-                cls="fill-primary",
-            ),
-            Rect(
-                x="145.827",
-                y="233.425",
-                width="10",
-                height="26.959",
-                cls="fill-primary-hover",
-            ),
-            # transform="matrix(1, 0, 0, 1, -23.73033332824707, 0.15976101160049438)",
+            viewBox="121.987 207.522 338 65",
+            xmlns="http://www.w3.org/2000/svg",
+            cls=logo_cls,
         ),
-        viewBox="121.987 207.522 338 65",
-        xmlns="http://www.w3.org/2000/svg",
+        Svg(
+            G(
+                Rect(
+                    x="121.987",
+                    y="240.517",
+                    width="10",
+                    height="19.864",
+                    cls="fill-primary-hover",
+                ),
+                Rect(
+                    x="133.87",
+                    y="227.384",
+                    width="10",
+                    height="33",
+                    cls="fill-primary",
+                ),
+                Rect(
+                    x="145.827",
+                    y="233.425",
+                    width="10",
+                    height="26.959",
+                    cls="fill-primary-hover",
+                ),
+                transform="matrix(1, 0, 0, 1, -47.76963424682617, -20.056758880615234)",
+            ),
+            viewBox="74.2174 207.3272 33.84 33",
+            xmlns="http://www.w3.org/2000/svg",
+            cls=icon_cls,
+        ),
         cls=cls,
     )
 

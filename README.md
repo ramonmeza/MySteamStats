@@ -32,7 +32,7 @@ docker build . --tag mysteamstatsapp
 Steam authentication may not work when ran within a Docker container. This is because the callback url (HOST_URL) isn't an address that Steam can verify, or something.
 
 ```sh
-docker run -e HOST_URL="" -e STEAM_SECRET="" -p 8000:8000 mysteamstatsapp
+docker run -e HOST_URL="" -e STEAM_SECRET="" -e AWS_ACCESS_KEY_ID="" -e AWS_SECRET_ACCESS_KEY="" -p 8000:8000 mysteamstatsapp
 ```
 
 ## Roadmap
@@ -57,8 +57,6 @@ This is a changing list of things I need to do.
     - [ ] Make it pretty
     - [ ] describe the platform and it's purpose
     - [ ] talk about me a bit 👉👈
-
-- [ ] Contact Page (this could just be the feedback from? unsure yet)
 
 - [ ] "Market"
     - [ ] Make social media accounts

@@ -12,11 +12,11 @@ from fasthtml.common import (
     Script,
     setup_toasts,
     StaticFiles,
-    Style,
 )
 
 
 from .authentication import user_auth_before, SteamAuth
+from .pages.admin_login import AdminLogin
 from .pages.dashboard import Dashboard
 from .pages.error import Error
 from .pages.feedback_form import FeedbackForm, FeedbackSubmitted
@@ -125,6 +125,11 @@ async def get():
     return SteamAuth.authorize(callback_url=f"{callback_url}/auth/steam")
 
 
+@rt("/signin/admin")
+async def get(session):
+    return AdminLogin(player=session.get("player", None))
+
+
 @rt("/signout")
 async def get(session):
     # reset the session auth key to None, effectively closing the active session
@@ -150,6 +155,17 @@ async def get(request: Request, session):
         return RedirectResponse("/dashboard", status_code=303)
     except:
         session["player"] = None
+        set_toast(session, "error", "You've failed to sign in!")
+        return RedirectResponse("/", status_code=303)
+
+
+@rt("/auth/admin")
+async def post(request: Request, session):
+    try:
+        form = await request.form()
+        set_toast(session, "success", "You've signed in as Admin!")
+        return RedirectResponse("/", status_code=303)
+    except Exception as e:
         set_toast(session, "error", "You've failed to sign in!")
         return RedirectResponse("/", status_code=303)
 
