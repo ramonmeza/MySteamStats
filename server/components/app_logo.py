@@ -1,7 +1,39 @@
 from fasthtml.svg import G, Rect, Svg, Text, Tspan
 
 
-def AppLogo(cls=None):
+def AppLogo(cls=None, small: bool = False):
+    if small:
+        return (
+            Svg(
+                G(
+                    Rect(
+                        x="121.987",
+                        y="240.517",
+                        width="10",
+                        height="19.864",
+                        cls="fill-primary-hover",
+                    ),
+                    Rect(
+                        x="133.87",
+                        y="227.384",
+                        width="10",
+                        height="33",
+                        cls="fill-primary",
+                    ),
+                    Rect(
+                        x="145.827",
+                        y="233.425",
+                        width="10",
+                        height="26.959",
+                        cls="fill-primary-hover",
+                    ),
+                    transform="matrix(1, 0, 0, 1, -47.76963424682617, -20.056758880615234)",
+                ),
+                viewBox="74.2174 207.3272 33.84 33",
+                xmlns="http://www.w3.org/2000/svg",
+            ),
+        )
+
     return Svg(
         G(
             Text(
@@ -16,7 +48,7 @@ def AppLogo(cls=None):
                     x="344",
                     y="259.691",
                     cls="fill-primary",
-                    style="font-weight: 900; font-size: 50.3px; word-spacing: 0px;",
+                    style="font-weight: 600; font-size: 50.3px; word-spacing: 0px;",
                 ),
                 cls="fill-dark dark:fill-light",
                 style="font-family: Coolvetica; font-size: 51px; white-space: pre; opacity: 1; transform-origin: -0.199419px -2.54803px;",
@@ -29,7 +61,6 @@ def AppLogo(cls=None):
                 width="10",
                 height="19.864",
                 cls="fill-primary-hover",
-                style="stroke: rgb(0, 0, 0); paint-order: fill; fill-rule: nonzero; stroke-opacity: 0; opacity: 1;",
             ),
             Rect(
                 x="133.87",
@@ -37,7 +68,6 @@ def AppLogo(cls=None):
                 width="10",
                 height="33",
                 cls="fill-primary",
-                style="stroke: rgb(0, 0, 0); paint-order: fill; fill-rule: nonzero; stroke-opacity: 0; opacity: 1;",
             ),
             Rect(
                 x="145.827",
@@ -45,7 +75,6 @@ def AppLogo(cls=None):
                 width="10",
                 height="26.959",
                 cls="fill-primary-hover",
-                style="stroke: rgb(0, 0, 0); paint-order: fill; fill-rule: nonzero; stroke-opacity: 0; opacity: 1;",
             ),
             # transform="matrix(1, 0, 0, 1, -23.73033332824707, 0.15976101160049438)",
         ),

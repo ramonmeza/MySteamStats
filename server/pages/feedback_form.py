@@ -66,8 +66,8 @@ def FeedbackForm(reason: str = "", player=None):
         Script(
             code="""
 function validateForm(event) {
-    # event.target.reason.value = sanitize(event.target.reason.value);
-    # event.target.description.value = sanitize(event.target.description.value);
+    // event.target.reason.value = sanitize(event.target.reason.value);
+    // event.target.description.value = sanitize(event.target.description.value);
 }
                """
         ),
