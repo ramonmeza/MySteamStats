@@ -1,5 +1,7 @@
 from fasthtml.common import *
 
+from .app_logo import AppLogo
+
 
 def AppMenu(player: dict, hidden: bool = False):
     endpoints = (
@@ -35,10 +37,7 @@ def AppMenu(player: dict, hidden: bool = False):
                 onclick="toggleMenu();",
                 cls="cursor-pointer justify-self-start",
             ),
-            Div(
-                H1("MySteamStats", cls="text-xl"),
-                cls="grow text-center",
-            ),
+            AppLogo(cls="h-8 justify-self-center"),
             Div(
                 Button(
                     I(cls="fa-regular fa-moon", id="AppDarkModeToggle"),
@@ -48,7 +47,7 @@ def AppMenu(player: dict, hidden: bool = False):
                 cls="justify-self-end",
             ),
             Script(src="/public/js/components/appMenu.js"),
-            cls="grid grid-cols-3 p-4 h-full",
+            cls="grid grid-cols-3 items-center p-4 h-full",
         ),
         Div(
             Ul(
@@ -67,5 +66,5 @@ def AppMenu(player: dict, hidden: bool = False):
             cls="hidden w-full text-center bg-menu-item dark:bg-dark-menu-item",
         ),
         id="AppMenu",
-        cls=f"fixed z-50 top-0 left-0 h-16 w-full bg-primary shadow {'hidden' if hidden else ''}",
+        cls=f"fixed z-50 top-0 left-0 h-16 w-full bg-mid shadow {'hidden' if hidden else ''}",
     )

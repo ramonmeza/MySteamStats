@@ -8,11 +8,12 @@ const config = {
   ],
   theme: {
     extend: {
-      /* https://materialtheme.arcsine.dev/ */
+      /* https://mater6ialtheme.arcsine.dev/ */
       colors: {
         /* dark- prefix used for dark mode */
         /* text colors */
         dark: "#121212",
+        mid: "#212121",
         light: "#ededed",
 
         primary: "#b317d6",

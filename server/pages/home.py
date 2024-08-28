@@ -1,6 +1,6 @@
 from fasthtml.common import *
 
-from ..components.app_button import AppButton
+from ..components.app_logo import AppLogo
 from ..components.app_page import AppPage
 from ..components.app_link import AppLink
 from ..components.app_lists import GameList
@@ -13,7 +13,7 @@ def Home():
         AppScrollArrow(),
         Div(
             Div(
-                H1("MySteamStats", cls="text-4xl font-bold text-primary"),
+                AppLogo(),
                 P(
                     "Your Games, Your Stats",
                     cls="italic font-light",
