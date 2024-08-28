@@ -49,7 +49,7 @@ def AppLogo(cls=None):
             ),
             # transform="matrix(1, 0, 0, 1, -23.73033332824707, 0.15976101160049438)",
         ),
-        viewBox="74.781 207.522 405.21 65",
+        viewBox="121.987 207.522 338 65",
         xmlns="http://www.w3.org/2000/svg",
         cls=cls,
     )
