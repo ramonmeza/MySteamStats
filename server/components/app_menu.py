@@ -6,22 +6,29 @@ from .app_logo import AppLogo
 def AppMenu(session, hidden: bool = False):
     player = session.get("player", None)
     isAdmin = session.get("isAdmin", None)
-    endpoints = (
-        [
+
+    # the menu changes per user type
+    endpoints = None
+    if player and not isAdmin:
+        endpoints = [
             ("Dashboard", "/dashboard"),
             ("Request Game", "/feedback?reason=Request Game"),
             ("Report Issue", "/feedback?reason=Report Issue"),
             ("Sign Out", "/signout"),
         ]
-        if player is not None
-        else (
-            [
-                ("Home", "/"),
-            ]
-            if isAdmin
-            else [("Home", "/"), ("Sign In", "/signin/steam")]
-        )
-    )
+    elif player and isAdmin:
+        endpoints = [
+            ("Dashboard", "/dashboard"),
+            ("Admin Panel", "/admin/panel"),
+            ("Sign Out", "/signout"),
+        ]
+    elif isAdmin:
+        endpoints = [
+            ("Admin Panel", "/admin/panel"),
+            ("Sign Out", "/signout"),
+        ]
+    else:
+        endpoints = [("Home", "/"), ("Sign In", "/signin/steam")]
 
     menu_icon = (
         Div(
