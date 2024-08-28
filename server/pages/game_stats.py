@@ -16,7 +16,7 @@ def GameStats(steam_api_key: str, player: dict, appid: int):
     )
     schema: dict = SteamAPI.ISteamUserStats.GetSchemaForGame(steam_api_key, appid)
 
-    if not stats or "stats" not in stats:
+    if not stats or "stats" not in stats["playerstats"]:
         return AppPage(
             Div(
                 H2(
@@ -24,9 +24,9 @@ def GameStats(steam_api_key: str, player: dict, appid: int):
                     cls="text-4xl font-black mb-8",
                 ),
                 P(
-                    "This game does not have trackable statistics."
-                    if "stats" not in stats
-                    else "You do not own this game, so no information is displayed."
+                    "You do not own this game, so no information is displayed."
+                    if not stats
+                    else "This game does not have trackable statistics."
                 ),
                 cls="container mx-auto text-center",
             ),
