@@ -4,7 +4,7 @@ from ..components.app_link import AppLink
 from ..components.app_page import AppPage
 
 
-def Error(request, exception):
+def Error(request: Request, exception):
     # @todo: pass request to feedback form
     return AppPage(
         Div(
@@ -21,4 +21,5 @@ def Error(request, exception):
             cls="text-center mt-56",
         ),
         title=str(exception),
+        session=request.session,
     )

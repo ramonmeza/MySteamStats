@@ -3,7 +3,9 @@ from fasthtml.common import *
 from .app_logo import AppLogo
 
 
-def AppMenu(player: dict, hidden: bool = False):
+def AppMenu(session, hidden: bool = False):
+    player = session.get("player", None)
+    isAdmin = session.get("isAdmin", None)
     endpoints = (
         [
             ("Dashboard", "/dashboard"),
@@ -11,8 +13,14 @@ def AppMenu(player: dict, hidden: bool = False):
             ("Report Issue", "/feedback?reason=Report Issue"),
             ("Sign Out", "/signout"),
         ]
-        if player
-        else [("Home", "/"), ("Sign In", "/signin/steam")]
+        if player is not None
+        else (
+            [
+                ("Home", "/"),
+            ]
+            if isAdmin
+            else [("Home", "/"), ("Sign In", "/signin/steam")]
+        )
     )
 
     menu_icon = (

@@ -5,7 +5,7 @@ from ..components.app_input import AppInput
 from ..components.app_page import AppPage
 
 
-def AdminLogin(player=None):
+def AdminLogin(session):
     return AppPage(
         Div(
             H2(
@@ -35,6 +35,6 @@ def AdminLogin(player=None):
             ),
             cls="container mx-auto text-center",
         ),
-        player=player,
+        session=session,
         title="Admin Login",
     )

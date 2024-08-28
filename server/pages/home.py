@@ -8,7 +8,7 @@ from ..components.app_scroll_arrow import AppScrollArrow
 from ..supported_games import SUPPORTED_GAMES
 
 
-def Home():
+def Home(session):
     return AppPage(
         AppScrollArrow(),
         Div(
@@ -104,4 +104,5 @@ def Home():
         ),
         padding="pt-24 pb-12",
         menu_starts_hidden=True,
+        session=session,
     )

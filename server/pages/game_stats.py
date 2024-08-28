@@ -8,8 +8,8 @@ from ..components.app_lists import GameStatsList
 from ..steamapi import SteamAPI
 
 
-def GameStats(steam_api_key: str, player: dict, appid: int):
-    steamid: int = int(player["steamid"])
+def GameStats(session, steam_api_key: str, appid: int):
+    steamid: int = int(session.get("player")["steamid"])
     details: dict = SteamAPI.get_app_details(appid)[str(appid)]["data"]
     stats: dict = SteamAPI.ISteamUserStats.GetUserStatsForGame(
         steam_api_key, steamid, appid
@@ -32,7 +32,7 @@ def GameStats(steam_api_key: str, player: dict, appid: int):
             ),
             Script(src="/public/js/components/filterList.js"),
             background=details["background"],
-            player=player,
+            session=session,
         )
     else:
         return AppPage(
@@ -47,5 +47,5 @@ def GameStats(steam_api_key: str, player: dict, appid: int):
             ),
             Script(src="/public/js/components/filterList.js"),
             background=details["background"],
-            player=player,
+            session=session,
         )

@@ -24,7 +24,7 @@ def FeedbackSubmitted(form):
         )
 
 
-def FeedbackForm(reason: str = "", player=None):
+def FeedbackForm(session, reason: str = ""):
     return AppPage(
         Div(
             H2(
@@ -62,6 +62,6 @@ def FeedbackForm(reason: str = "", player=None):
             ),
             cls="container mx-auto text-center",
         ),
-        player=player,
+        session=session,
         title="Feedback Form",
     )

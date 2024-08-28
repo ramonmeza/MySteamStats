@@ -8,8 +8,8 @@ from ..steamapi import SteamAPI
 from ..supported_games import SUPPORTED_GAMES
 
 
-def Dashboard(steam_api_key: str, player: dict):
-    steamid: int = int(player["steamid"])
+def Dashboard(session, steam_api_key: str):
+    steamid: int = int(session.get("player")["steamid"])
 
     owned_games: dict = SteamAPI.IPlayerService.GetOwnedGames(
         key=steam_api_key,
@@ -40,5 +40,5 @@ def Dashboard(steam_api_key: str, player: dict):
             cls="container mx-auto",
         ),
         Script(src="/public/js/components/filterList.js"),
-        player=player,
+        session=session,
     )

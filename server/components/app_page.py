@@ -6,7 +6,7 @@ from .app_menu import AppMenu
 
 def AppPage(
     *content,
-    player: dict = None,
+    session,
     app_name: str = "MySteamStats",
     title: str = "Your Games, Your Stats",
     background: str = None,
@@ -26,7 +26,7 @@ def AppPage(
         Title(f"{app_name}: {title}"),
         Body(
             *fonts,
-            AppMenu(player=player, hidden=menu_starts_hidden),
+            AppMenu(session=session, hidden=menu_starts_hidden),
             *content,
             Footer(
                 P("© MySteamStats. All rights reserved."),

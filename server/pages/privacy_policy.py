@@ -4,7 +4,7 @@ from ..components.app_link import AppLink
 from ..components.app_page import AppPage
 
 
-def PrivacyPolicy(player: dict = None):
+def PrivacyPolicy(session):
     return AppPage(
         Div(
             H1("Privacy Policy", cls="text-center text-3xl"),
@@ -82,6 +82,6 @@ def PrivacyPolicy(player: dict = None):
             ),
             cls="container mx-auto space-y-4",
         ),
-        player=player,
+        session=session,
         title="Privacy Policy",
     )

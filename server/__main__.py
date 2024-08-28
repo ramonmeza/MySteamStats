@@ -112,11 +112,17 @@ setup_toasts(app)
 @rt("/")
 async def get(session):
     # signed in users goto dashboard
-    if session.get("player", None) is not None:
+    player = session.get("player", None)
+    isAdmin = session.get("isAdmin", None)
+
+    if player is not None and not isAdmin:
         return RedirectResponse("/dashboard", status_code=303)
 
+    elif isAdmin:
+        return RedirectResponse("/admin/panel", status_code=303)
+
     # if not signed in, goto home page
-    return Home()
+    return Home(session=session)
 
 
 @rt("/signin/steam")
@@ -128,7 +134,7 @@ async def get():
 
 @rt("/signin/admin")
 async def get(session):
-    return AdminLogin(player=session.get("player", None))
+    return AdminLogin(session)
 
 
 @rt("/signout")
@@ -180,20 +186,16 @@ async def post(request: Request, session):
 
 @rt("/admin/panel")
 async def get(request: Request, session):
-    player = session.get("player", None)
-    return AdminPanel(player=player)
+    return AdminPanel(session=session)
 
 
 @rt("/dashboard")
 async def get(session):
-    player = session.get("player")
-    return Dashboard(os.getenv("STEAM_SECRET"), player)
+    return Dashboard(session=session, steam_api_key=os.getenv("STEAM_SECRET"))
 
 
 @rt("/stats/{appid:path}")
 async def get(appid: int, session):
-    player = session.get("player")
-
     if appid not in [game["appid"] for game in SUPPORTED_GAMES]:
         set_toast(
             session,
@@ -202,13 +204,15 @@ async def get(appid: int, session):
         )
         handle_toasts(session)
 
-    return GameStats(os.getenv("STEAM_SECRET"), player, appid)
+    return GameStats(
+        session=session, steam_api_key=os.getenv("STEAM_SECRET"), appid=appid
+    )
 
 
 @rt("/feedback")
 async def get(request, session):
     return FeedbackForm(
-        player=session.get("player", None),
+        session=session,
         reason=(
             request.query_params["reason"] if "reason" in request.query_params else None
         ),
@@ -223,5 +227,4 @@ async def post(request):
 
 @rt("/privacy_policy")
 async def get(request, session):
-    player = session.get("player", None)
-    return PrivacyPolicy(player)
+    return PrivacyPolicy(session=session)
