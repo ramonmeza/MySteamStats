@@ -75,7 +75,7 @@ class SteamAuth:
 
         if re.search("is_valid:true", resp):
             matched_id = re.search(
-                "https://steamcommunity.com/openid/id/(\d+)", data["openid.claimed_id"]
+                r"https://steamcommunity.com/openid/id/(\d+)", data["openid.claimed_id"]
             )
             if matched_id != None or matched_id.group(1) != None:
                 return matched_id.group(1)

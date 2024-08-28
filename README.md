@@ -47,7 +47,7 @@ This is a changing list of things I need to do.
 - [ ] Regex search filter
 
 - [ ] Admin page
-    - [ ] admin login
+    - [x] admin login
     - [ ] show feedback
     - [ ] sort by reason
 
