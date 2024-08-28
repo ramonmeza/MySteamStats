@@ -37,7 +37,7 @@ def Dashboard(steam_api_key: str, player: dict):
                 ),
             ),
             GameList(owned_games),
-            cls="container mx-auto px-4",
+            cls="container mx-auto",
         ),
         Script(src="/public/js/components/filterList.js"),
         player=player,

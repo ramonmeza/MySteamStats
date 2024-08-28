@@ -21,7 +21,7 @@ def AppMenu(player: dict, hidden: bool = False):
             ),
             Span(
                 player["personaname"],
-                cls="text-lg font-semibold mx-2",
+                cls="text-lg font-semibold mx-2 hidden md:inline-block",
             ),
         )
         if player
@@ -33,7 +33,7 @@ def AppMenu(player: dict, hidden: bool = False):
             Div(
                 menu_icon,
                 onclick="toggleMenu();",
-                cls="grow-0 cursor-pointer",
+                cls="cursor-pointer justify-self-start",
             ),
             Div(
                 H1("MySteamStats", cls="text-xl"),
@@ -45,10 +45,10 @@ def AppMenu(player: dict, hidden: bool = False):
                     onclick="toggleDarkMode();",
                     cls="h-8 w-8 cursor-pointer",
                 ),
-                cls="grow-0",
+                cls="justify-self-end",
             ),
             Script(src="/public/js/components/appMenu.js"),
-            cls="flex flex-row items-stretch p-4 h-full",
+            cls="grid grid-cols-3 p-4 h-full",
         ),
         Div(
             Ul(

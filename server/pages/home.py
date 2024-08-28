@@ -16,7 +16,7 @@ def Home():
                 H1("MySteamStats", cls="text-4xl font-bold text-primary"),
                 P(
                     "Your Games, Your Stats",
-                    cls="italic",
+                    cls="italic font-light",
                 ),
                 A(
                     Img(
@@ -24,6 +24,7 @@ def Home():
                         cls="animate-pulse shadow-md dark:shadow-none hover:shadow-xl dark:hover:shadow-none  transition-shadow",
                     ),
                     href="/signin/steam",
+                    cls="mt-4",
                 ),
                 Script(
                     code="""
@@ -101,6 +102,6 @@ def Home():
             ),
             cls="container mx-auto px-4",
         ),
-        margin="mt-0 mb-12",
+        padding="pt-24 pb-12",
         menu_starts_hidden=True,
     )

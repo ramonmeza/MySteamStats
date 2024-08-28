@@ -1,9 +1,9 @@
 from fasthtml.common import *
 
 
-def AppLink(text: str, href: str):
+def AppLink(text: str, **kwargs):
     return A(
         text,
-        href=href,
+        **kwargs,
         cls="text-primary hover:text-primary-hover active:text-primary-active duration-300",
     )

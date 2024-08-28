@@ -44,6 +44,11 @@ This is a changing list of things I need to do.
 
 - [ ] Regex search filter
 
+- [ ] Admin page
+    - [ ] admin login
+    - [ ] show feedback
+    - [ ] sort by reason
+
 - [ ] Game Stats
     - [ ] Proper display names
     - [ ] custom stat display for supported game (cs2, carmechanic, carx)

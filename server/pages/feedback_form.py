@@ -61,7 +61,7 @@ def FeedbackForm(reason: str = "", player=None):
                 id="loadingIcon",
                 cls="htmx-indicator",
             ),
-            cls="container mx-auto px-4 text-center",
+            cls="container mx-auto text-center",
         ),
         Script(
             code="""

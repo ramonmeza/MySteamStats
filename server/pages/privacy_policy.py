@@ -80,7 +80,7 @@ def PrivacyPolicy(player: dict = None):
                 ),
                 cls="list-decimal ml-4 space-y-2",
             ),
-            cls="container mx-auto px-4 space-y-4",
+            cls="container mx-auto space-y-4",
         ),
         player=player,
         title="Privacy Policy",

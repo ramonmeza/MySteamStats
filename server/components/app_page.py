@@ -10,7 +10,7 @@ def AppPage(
     app_name: str = "MySteamStats",
     title: str = "Your Games, Your Stats",
     background: str = None,
-    margin: str = "mt-24 mb-12",
+    padding: str = "pt-24 px-4",
     menu_starts_hidden: bool = False,
 ):
     font = Link(
@@ -24,20 +24,20 @@ def AppPage(
             AppMenu(player=player, hidden=menu_starts_hidden),
             *content,
             Footer(
-                Div(
-                    P("© MySteamStats. All rights reserved."),
-                    P(
-                        "All trademarks are property of their respective owners in the US and other countries.",
+                P("© MySteamStats. All rights reserved."),
+                P(
+                    "All trademarks are property of their respective owners in the US and other countries.",
+                ),
+                P(
+                    "This site is not associated with ",
+                    AppLink(
+                        "Valve Corp.",
+                        href="https://www.valvesoftware.com/en/",
+                        target="_blank",
                     ),
-                    P(
-                        "This site is not associated with ",
-                        AppLink(
-                            "Valve Corp.", href="https://www.valvesoftware.com/en/"
-                        ),
-                    ),
-                    Div(AppLink("Privacy Policy", href="/privacy_policy")),
-                    cls="container mx-auto px-4 mt-8 text-center text-xs",
-                )
+                ),
+                Div(AppLink("Privacy Policy", href="/privacy_policy"), cls="py-2"),
+                cls="mt-auto pt-16 h-full text-center text-xs",
             ),
             Link(
                 rel="stylesheet",
@@ -47,7 +47,7 @@ def AppPage(
                 src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"
             ),
             cls=(
-                f"{margin} font-['Exo'] cursor-default bg-light dark:bg-dark text-dark dark:text-light"
+                f"{padding} relative font-['Exo'] cursor-default min-w-screen min-h-screen flex flex-col bg-light dark:bg-dark text-dark dark:text-light"
                 + (
                     f" bg-[url('{background}')] bg-fixed bg-cover bg-[center_top_4rem]"
                     if background
