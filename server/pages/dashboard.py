@@ -39,6 +39,6 @@ def Dashboard(session, steam_api_key: str):
             GameList(owned_games),
             cls="container mx-auto",
         ),
-        Script(src="/public/js/components/filterList.js"),
+        Script(src="/public/js/components/appList.js"),
         session=session,
     )

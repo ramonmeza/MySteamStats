@@ -4,12 +4,16 @@ import typing
 
 from fasthtml.common import (
     Beforeware,
+    Div,
     FastHTML,
+    I,
     Link,
     Meta,
     Mount,
+    P,
     RedirectResponse,
     Request,
+    Response,
     Script,
     setup_toasts,
     StaticFiles,
@@ -17,6 +21,8 @@ from fasthtml.common import (
 
 
 from .authentication import authenticate_admin, SteamAuth, user_auth_before
+from .db import delete_feedback, get_all_feedback
+from .components.app_lists import FeedbackList
 from .pages.admin_login import AdminLogin
 from .pages.admin_panel import AdminPanel
 from .pages.dashboard import Dashboard
@@ -78,16 +84,21 @@ if ENABLE_DEBUG:
         tailwind_config_code = fp.read().replace("\n", "")
 hdrs = (
     (
-        Meta(name="description", content="Quickly access stats for any of your favorite Steam games!"),
+        Meta(
+            name="description",
+            content="Quickly access stats for any of your favorite Steam games!",
+        ),
         Link(rel="icon", type="image/x-icon", href="/public/img/favicon.ico"),
         Script(src="https://cdn.tailwindcss.com"),
         Script(code=tailwind_config_code),
     )
     if ENABLE_DEBUG
     else (
-        Meta(name="description", content="Quickly access stats for any of your favorite Steam games!"),
+        Meta(
+            name="description",
+            content="Quickly access stats for any of your favorite Steam games!",
+        ),
         Link(rel="icon", type="image/x-icon", href="/public/img/favicon.ico"),
-        Script(src="/public/js/tailwindcss.min.js"),
         Link(rel="stylesheet", href="/public/css/styles.css"),
     )
 )
@@ -188,8 +199,33 @@ async def post(request: Request, session):
 
 
 @rt("/admin/panel")
-async def get(request: Request, session):
+async def get(session):
     return AdminPanel(session=session)
+
+
+@rt("/admin/feedback")
+async def get():
+    feedback = await get_all_feedback()
+    return (FeedbackList(feedback),)
+
+
+@rt("/admin/feedback")
+async def delete(request: Request):
+    try:
+        id = request.query_params.get("id")
+        reason = request.query_params.get("reason")
+        success = await delete_feedback(id, reason)
+
+        if success:
+            return Response(status_code=200)
+
+    except Exception as e:
+        return Div(
+            I(cls="fa-solid fa-exclamation-triangle text-error"),
+            P("There was an unexpected error!"),
+            P(str(e), cls="text-xs text-mid"),
+            cls="text-center",
+        )
 
 
 @rt("/dashboard")
@@ -225,9 +261,9 @@ async def get(request, session):
 @rt("/feedback")
 async def post(request):
     form = await request.form()
-    return FeedbackSubmitted(form)
+    return await FeedbackSubmitted(form)
 
 
 @rt("/privacy_policy")
-async def get(request, session):
+async def get(session):
     return PrivacyPolicy(session=session)

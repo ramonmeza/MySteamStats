@@ -6,9 +6,9 @@ from ..components.app_page import AppPage
 from ..db import store_feedback
 
 
-def FeedbackSubmitted(form):
+async def FeedbackSubmitted(form):
     try:
-        id = store_feedback(form["reason"], form["description"])
+        id = await store_feedback(form["reason"], form["description"])
         return Div(
             P("Thanks for submitting your feedback!"),
             P(f"Feedback ID: {id}", cls="italic text-sm"),

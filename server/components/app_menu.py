@@ -70,7 +70,7 @@ def AppMenu(session, hidden: bool = False):
                     A(
                         Li(
                             link[0],
-                            cls="uppercase p-4 hover:bg-menu-item-hover dark:hover:bg-dark-menu-item-hover active:bg-menu-item-active dark:active:bg-dark-menu-item-active",
+                            cls="uppercase p-4 hover:bg-menu-item-hover dark:hover:bg-dark-menu-item-hover active:bg-menu-item-active dark:active:bg-dark-menu-item-active duration-300",
                         ),
                         href=link[1],
                     )

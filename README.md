@@ -44,13 +44,11 @@ This is a changing list of things I need to do.
 
 - [x] Utilize Steam API to personalize menu with Steam icon and Steam nickname
 
-- [ ] Regex search filter
-
-- [ ] Admin page
+- [x] Admin page
     - [x] admin login
     - [x] show feedback
     - [x] sort by reason (filter works)
-    - [ ] delete feedback
+    - [x] delete feedback
 
 - [ ] Game Stats
     - [ ] Proper display names

@@ -30,7 +30,7 @@ def GameStats(session, steam_api_key: str, appid: int):
                 ),
                 cls="container mx-auto text-center",
             ),
-            Script(src="/public/js/components/filterList.js"),
+            Script(src="/public/js/components/appList.js"),
             background=details["background"],
             session=session,
         )
@@ -45,7 +45,7 @@ def GameStats(session, steam_api_key: str, appid: int):
                 GameStatsList(stats, schema),
                 cls="container mx-auto",
             ),
-            Script(src="/public/js/components/filterList.js"),
+            Script(src="/public/js/components/appList.js"),
             background=details["background"],
             session=session,
         )

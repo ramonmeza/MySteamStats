@@ -65,7 +65,7 @@ def GameListItem(appid: int):
         A(
             Img(src=details["header_image"]),
             href=f"/stats/{appid}",
-            cls="shadow dark:shadow-none hover:shadow-lg transition-shadow mx-auto inner-border-2 border-transparent hover:border-primary active:border-primary-active",
+            cls="shadow dark:shadow-none hover:shadow-lg mx-auto hover:-translate-y-2 duration-300",
             data_searchterms=",".join([str(appid), details["name"]]),
         ),
     )
@@ -93,12 +93,29 @@ def GameStatsListItem(stat_name: str, stat_value, fallback_name: str = "Unknown 
 def FeedbackListItem(id, reason, description):
     return Div(
         Div(
-            # @todo: make button functional
-            H1(reason, cls="py-2 text-base text-primary font-light"),
-            Button(I(cls="fa fa-trash text-error"), cls="ml-auto"),
-            cls="flex",
+            Div(
+                H1(reason, cls="text-base text-primary"),
+                Button(
+                    I(cls="fa fa-trash text-error"),
+                    cls="ml-auto",
+                    hx_delete=f"/admin/feedback?id={id}&reason={reason}",
+                    hx_target=f"#feedbackItem-{id}",
+                    hx_swap="outerHTML",
+                    hx_indicator=f"#loadingIcon-{id}",
+                    onclick=f"this.parentElement.parentElement.classList.add('hidden'); document.getElementById('loadingIcon-{id}').classList.remove('hidden');",
+                ),
+                cls="flex pt-2",
+            ),
+            P(id, cls="text-xs font-light"),
+            P('"', description, '"', cls="py-2 text-light"),
+            data_searchterms=[reason, description],
+            cls="bg-mid hover:bg-mid-hover text-mid-hover hover:text-mid px-4 py-2 shadow dark:shadow-none hover:shadow-lg transition-shadow",
         ),
-        P('"', description, '"', cls="pl-2 pb-2"),
-        data_searchterms=[reason, description],
-        cls="bg-mid hover:bg-mid-hover px-4 py-2 text-light shadow dark:shadow-none hover:shadow-lg transition-shadow",
+        Div(
+            I(cls="fa-solid fa-spinner text-primary animate-spin h-8 w-8"),
+            id=f"loadingIcon-{id}",
+            cls="htmx-indicator mx-auto w-max hidden",
+        ),
+        id=f"feedbackItem-{id}",
+        cls="my-auto",
     )
