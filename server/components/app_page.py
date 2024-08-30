@@ -51,13 +51,7 @@ def AppPage(
             Script(
                 src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"
             ),
-            cls=(
-                f"{padding} relative font-['Exo'] cursor-default min-w-screen min-h-screen flex flex-col bg-light dark:bg-dark text-dark dark:text-light"
-                + (
-                    f" bg-[url('{background}')] bg-fixed bg-cover bg-[center_top_4rem]"
-                    if background
-                    else ""
-                )
-            ),
+            cls=f"{padding} relative font-['Exo'] cursor-default min-w-screen min-h-screen flex flex-col bg-light dark:bg-dark text-dark dark:text-light bg-fixed bg-cover bg-[center_top_4rem]",
+            style=(f'background: url("{background}");' if background else ""),
         ),
     )

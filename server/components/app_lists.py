@@ -8,6 +8,7 @@ def GridList(*items):
     return (
         Div(
             items,
+            id="appList",
             cls="grid content-center gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
         ),
     )
@@ -108,7 +109,6 @@ def FeedbackListItem(id, reason, description):
             ),
             P(id, cls="text-xs font-light"),
             P('"', description, '"', cls="py-2 text-light"),
-            data_searchterms=[reason, description],
             cls="bg-mid hover:bg-mid-hover text-mid-hover hover:text-mid px-4 py-2 shadow dark:shadow-none hover:shadow-lg transition-shadow",
         ),
         Div(
@@ -116,6 +116,7 @@ def FeedbackListItem(id, reason, description):
             id=f"loadingIcon-{id}",
             cls="htmx-indicator mx-auto w-max hidden",
         ),
-        id=f"feedbackItem-{id}",
+        data_searchterms=[reason, description],
         cls="my-auto",
+        id=f"feedbackItem-{id}",
     )

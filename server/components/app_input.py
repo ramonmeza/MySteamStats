@@ -24,7 +24,7 @@ def AppSearchInput(placeholder: str, no_results_message):
         Div(
             AppInput(
                 placeholder=placeholder,
-                onkeyup="filterList(this.value, this.parentElement.nextElementSibling.children);",
+                onkeyup="filterList(this.value, document.getElementById('appList').children);",
             ),
             Div(
                 I(cls="fa-solid fa-magnifying-glass h-32 w-32"),

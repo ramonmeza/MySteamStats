@@ -17,6 +17,7 @@ def AdminPanel(session):
                 id=f"loadingIcon",
                 hx_trigger="load",
                 hx_get="/admin/feedback",
+                hx_swap="outerHTML",
                 hx_target="#feedbackList",
                 cls="htmx-indicator mx-auto w-max",
             ),
